@@ -1,19 +1,12 @@
-# Uygulama için JDK lazım gerekli.
-#FROM amazoncorretto:17
-#FROM openjdk:21
-FROM eclipse-temurin:21-jdk
+# Java 21 uygulamasını çalıştırmak için JRE yeterlidir.
+FROM eclipse-temurin:21-jre
 
-# Bizim projemizdeki JAR dosyamızın Docker içinde çalışacağı konum.
-ARG JAR_FILE=target/*.jar
+WORKDIR /app
 
-# JAR dosyasını bu isimle Docker'ın içine kopyala
+ARG JAR_FILE
+
 COPY ${JAR_FILE} application.jar
 
-# terminal komutları için CMD kullanılır
-CMD  apt-get update -y
-
-# projenin çalışacağı iç port
 EXPOSE 8080
 
-# Uygulamanın çalışmasını sağlar.
-ENTRYPOINT ["java","-jar","application.jar"]
+ENTRYPOINT ["java", "-jar", "application.jar"]

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+<style>
+text{font-family:Arial,sans-serif;fill:#172033}.title{font-size:34px;font-weight:700}.h{font-size:24px;font-weight:700}.t{font-size:19px}.cmd{font-size:17px;font-family:monospace}.box{fill:#f7fbff;stroke:#2496ed;stroke-width:3;rx:18}.obj{fill:#fff8e6;stroke:#e0a100;stroke-width:3;rx:16}.arr{stroke:#34495e;stroke-width:4;marker-end:url(#a)}
+</style>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#34495e"/></marker></defs>
+<rect width="1200" height="620" fill="white"/>
+<text x="600" y="55" text-anchor="middle" class="title">Docker Mimarisi</text>
+<rect x="55" y="150" width="260" height="320" class="box"/>
+<text x="185" y="195" text-anchor="middle" class="h">Docker Client (CLI)</text>
+<text x="85" y="245" class="cmd">docker build</text><text x="85" y="280" class="cmd">docker run</text><text x="85" y="315" class="cmd">docker ps</text><text x="85" y="350" class="cmd">docker push</text><text x="85" y="385" class="cmd">docker pull</text>
+<rect x="455" y="210" width="290" height="190" class="box"/>
+<text x="600" y="265" text-anchor="middle" class="h">Docker Engine</text>
+<text x="600" y="305" text-anchor="middle" class="t">(Docker Daemon)</text>
+<text x="600" y="350" text-anchor="middle" class="t">Image • Container • Network • Volume</text>
+<line x1="315" y1="305" x2="450" y2="305" class="arr"/>
+<rect x="850" y="70" width="280" height="105" class="obj"/>
+<text x="990" y="115" text-anchor="middle" class="h">Docker Registry</text><text x="990" y="148" text-anchor="middle" class="t">Docker Hub</text>
+<line x1="690" y1="210" x2="855" y2="165" class="arr"/>
+<line x1="850" y1="180" x2="700" y2="225" class="arr"/>
+<text x="760" y="130" class="t">push / pull</text>
+<rect x="830" y="240" width="320" height="270" class="box"/>
+<text x="990" y="282" text-anchor="middle" class="h">Docker Nesneleri</text>
+<rect x="875" y="315" width="230" height="42" class="obj"/><text x="990" y="343" text-anchor="middle" class="t">Images</text>
+<rect x="875" y="372" width="230" height="42" class="obj"/><text x="990" y="400" text-anchor="middle" class="t">Containers</text>
+<rect x="875" y="429" width="230" height="42" class="obj"/><text x="990" y="457" text-anchor="middle" class="t">Networks</text>
+<rect x="875" y="486" width="230" height="42" class="obj"/><text x="990" y="514" text-anchor="middle" class="t">Volumes</text>
+<line x1="745" y1="305" x2="825" y2="305" class="arr"/>
+<text x="600" y="565" text-anchor="middle" class="t">CLI komutları Docker Engine'e gider; Engine image, container, network ve volume nesnelerini yönetir.</text>
+</svg>

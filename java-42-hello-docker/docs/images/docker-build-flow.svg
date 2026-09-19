@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="500" viewBox="0 0 1400 500">
+<style>
+text{font-family:Arial,sans-serif;fill:#172033}.title{font-size:32px;font-weight:700}.h{font-size:21px;font-weight:700}.t{font-size:17px}.box{fill:#f8fbff;stroke:#2496ed;stroke-width:3;rx:16}.arr{stroke:#34495e;stroke-width:4;marker-end:url(#a)}
+</style>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#34495e"/></marker></defs>
+<rect width="1400" height="500" fill="white"/>
+<text x="700" y="55" text-anchor="middle" class="title">Spring Boot → Docker Çalıştırma Akışı</text>
+<rect x="30" y="150" width="160" height="150" class="box"/><text x="110" y="200" text-anchor="middle" class="h">1. Source Code</text><text x="110" y="240" text-anchor="middle" class="t">Spring Boot</text>
+<rect x="230" y="150" width="160" height="150" class="box"/><text x="310" y="200" text-anchor="middle" class="h">2. Gradle</text><text x="310" y="240" text-anchor="middle" class="t">clean build</text>
+<rect x="430" y="150" width="160" height="150" class="box"/><text x="510" y="200" text-anchor="middle" class="h">3. JAR</text><text x="510" y="240" text-anchor="middle" class="t">build/libs/*.jar</text>
+<rect x="630" y="150" width="160" height="150" class="box"/><text x="710" y="200" text-anchor="middle" class="h">4. Dockerfile</text><text x="710" y="240" text-anchor="middle" class="t">runtime tarifi</text>
+<rect x="830" y="150" width="160" height="150" class="box"/><text x="910" y="200" text-anchor="middle" class="h">5. Image</text><text x="910" y="240" text-anchor="middle" class="t">docker build</text>
+<rect x="1030" y="150" width="160" height="150" class="box"/><text x="1110" y="200" text-anchor="middle" class="h">6. Container</text><text x="1110" y="240" text-anchor="middle" class="t">docker run</text>
+<rect x="1230" y="150" width="140" height="150" class="box"/><text x="1300" y="200" text-anchor="middle" class="h">7. Hub</text><text x="1300" y="240" text-anchor="middle" class="t">push / pull</text>
+<line x1="190" y1="225" x2="225" y2="225" class="arr"/><line x1="390" y1="225" x2="425" y2="225" class="arr"/><line x1="590" y1="225" x2="625" y2="225" class="arr"/><line x1="790" y1="225" x2="825" y2="225" class="arr"/><line x1="990" y1="225" x2="1025" y2="225" class="arr"/><line x1="1190" y1="225" x2="1225" y2="225" class="arr"/>
+<text x="700" y="385" text-anchor="middle" class="t">Kod önce Gradle ile executable JAR'a dönüştürülür; Dockerfile bu JAR'ı image'a paketler ve image container olarak çalıştırılır.</text>
+<text x="700" y="425" text-anchor="middle" class="t">Aynı image Docker Hub'a gönderilip başka ortamlarda pull edilerek tekrar çalıştırılabilir.</text>
+</svg>

@@ -1,0 +1,32 @@
+# Git / IDE
+.git/
+.github/
+.idea/
+.settings/
+.vscode/
+.project
+.classpath
+.factorypath
+
+# Gradle cache
+.gradle/
+
+# Source ve wrapper dosyaları image build context'i için gerekli değil
+src/
+gradle/
+gradlew
+gradlew.bat
+build.gradle
+settings.gradle
+
+# Gradle build çıktılarından sadece libs altındaki JAR'ları tut
+build/*
+!build/libs/
+!build/libs/*.jar
+
+# Dokümantasyon ve yerel dosyalar
+README.md
+docs/
+*.png
+*.svg
+*.log
