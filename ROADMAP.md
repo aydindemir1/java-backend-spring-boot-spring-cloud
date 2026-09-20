@@ -23,6 +23,29 @@ Aşağıdaki başlıklar temel eğitim kapsamı kabul edilir ve aynı derinlikte
 - Kubernetes'te temel Pod / Deployment / Service ve Minikube kullanımı
 - Jenkins ile temel CI/CD pipeline
 
+### Kendi Repository'mizde Zaten Uygulanmış Konular
+
+Aşağıdaki çalışmalar bu repository'de daha önce uygulanmış ve öğrenilmiş kabul edilir. Aynı derinlikte yeni roadmap projesi oluşturulmaz:
+
+- `java-35-spring-boot-hello`: Spring Boot CRUD, katmanlı yapı, Spring Data JPA/Hibernate, relational database bağlantısı, Docker Compose
+- `java-36-spring-boot-exception`: global exception handling, Bean Validation, profiles, OpenAPI/Swagger, Actuator
+- `java-37-mongo-crud`: Spring Boot + MongoDB CRUD ve temel MongoRepository kullanımı
+- `java-38-testing-unit-webmvc-datajpa`: JUnit 5, Mockito, AssertJ, MockMvc, `@WebMvcTest`, `@DataJpaTest`, H2
+- `java-39-spring-boot-logging`: SLF4J/Logback, log seviyeleri, console/file/exception logging
+- `java-40-spring-boot-redis`: Redis data structures, TTL, cache-aside, Spring Cache, Pub/Sub, Streams, MULTI/EXEC, pipelining, WATCH, distributed lock, rate limiting, idempotency, invalidation, stampede, hot-key, eviction, SCAN, Lettuce pooling, graceful fallback ve Testcontainers
+- `java-41-spring-security`: Spring Security, JWT access token, opaque refresh token, rotation, revocation, reuse detection, logout/logout-all, BCrypt, RBAC, method security, Flyway, OpenAPI, global exception handling ve PostgreSQL Testcontainers
+- `java-42-hello-docker`: Dockerfile, image/container lifecycle, build/run, port mapping, Docker Hub, Docker temel mimarisi ve container/VM farkları
+
+Bu yüzden roadmap'te bu konuların aynısı tekrar yer almaz. Yalnızca şu tür **daha ileri devamları** korunur:
+
+- Redis → Sentinel, Cluster, failover/recovery, distributed-systems semantics
+- Spring Security → OAuth2, OIDC, Keycloak, mTLS, authorization architecture ve DevSecOps
+- Testing → multi-service Testcontainers, WireMock, contract/mutation/property-based testing, Toxiproxy
+- Logging → structured logging, Loki, OpenTelemetry, metrics/logs/traces correlation
+- Docker → BuildKit, layers/cache internals, networking, cgroups/namespaces, PID 1/signals, OCI/containerd ve runtime security
+- Flyway → deep-dive, zero-downtime migration ve production migration strategy
+- MongoDB → modeling, indexing, aggregation, transactions ve schema evolution
+
 ### Önemli Kural
 
 Bir konu yukarıdaki eğitimlerde görülmüş olsa bile roadmap'te tekrar bulunabilir; ancak yalnızca kapsamı **internals, production failure, HA, performance, security, observability, operations veya architecture trade-off** seviyesine çıkıyorsa.
@@ -529,7 +552,7 @@ Bu liste nihai ve değişmez değildir. Eğitim çalışmaları tamamlandıktan 
 1. `java-2024` üzerinden gerçekten uygulanan konular,
 2. `java-se-course` üzerinden tamamlanan Microservices / Spring Cloud / Docker / Kubernetes bölümleri,
 3. gerektiğinde `java-se-edu` ile doğrulanan ek kapsam,
-4. bu repository'deki gerçek kod, test ve README'ler
+4. bu repository'de özellikle java-35–42 arasında daha önce uygulanmış gerçek kod, test ve README'ler
 
 yeniden taranır.
 
