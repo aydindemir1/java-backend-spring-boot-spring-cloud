@@ -158,3 +158,10 @@ Database
 Bu repository'nin amacı, Java'nın temel konularından başlayarak modern backend geliştirme süreçlerine adım adım ilerlemek ve Spring Boot ekosistemini uygulamalı örneklerle öğrenmektir.
 
 Repository ilerleyen aşamalarda ileri seviye backend, veritabanı, test, Spring Cloud ve dağıtık sistem konuları ile genişletilecektir.
+
+
+## Gelişim Yol Haritası
+
+Repository için hazırlanan **384 projelik Java Spring Boot + DevOps/Platform/SRE + Software Architecture master roadmap** ayrı bir dokümanda tutulmaktadır.
+
+➡️ [Master Roadmap](ROADMAP.md)
