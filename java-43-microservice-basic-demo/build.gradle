@@ -36,9 +36,13 @@ subprojects {
 
     dependencies {
         implementation libs.springBootWeb
+        implementation libs.swaggerApi
+        implementation libs.mapStruct
 
         compileOnly libs.lombok
+
         annotationProcessor libs.lombok
+        annotationProcessor libs.mapStructProcessor
 
         developmentOnly libs.springBootDevtools
     }
