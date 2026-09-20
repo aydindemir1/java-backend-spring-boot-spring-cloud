@@ -17,3 +17,10 @@ spring:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+authservice:
+  secret:
+    key: ${AUTH_JWT_SECRET:java44-auth-service-secret-key}
+  issuer: ${AUTH_JWT_ISSUER:java-44-auth-service}
+  expire:
+    date: ${AUTH_JWT_EXPIRE_MS:300000}

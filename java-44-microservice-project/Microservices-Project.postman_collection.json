@@ -1,0 +1,86 @@
+{
+  "info": {
+    "_postman_id": "java-44-microservice-project-day-2",
+    "name": "java-44-microservice-project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:9090"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "hello",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/"
+          }
+        },
+        {
+          "name": "info",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/info"
+          }
+        },
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"aydin\",\n  \"email\": \"aydin@example.com\",\n  \"password\": \"123456\",\n  \"rePassword\": \"123456\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/register"
+          }
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"aydin\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/login"
+          }
+        },
+        {
+          "name": "findAll",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/auth/findAll?token={{token}}"
+          }
+        },
+        {
+          "name": "getMessage",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/auth/getMessage"
+          }
+        }
+      ]
+    }
+  ]
+}

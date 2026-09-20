@@ -42,3 +42,32 @@ PostgreSQL bağlantısı environment variable ile değiştirilebilir:
 - `AUTH_DB_PASSWORD`
 
 Day 2'de kayıt/giriş iş mantığı, DTO'lar, hata yönetimi ve JWT tabanlı authentication akışı geliştirilecektir.
+
+## Day 2
+
+İkinci gün AuthService'in kayıt, giriş, JWT ve merkezi hata yönetimi akışı geliştirilmiştir.
+
+### Eklenen yapılar
+
+- Endpoint sabitleri için `constant/EndPoint`
+- Request DTO'ları: `DoRegisterRequestDto`, `DoLoginRequestDto`
+- Register response DTO örnekleri
+- Generic service altyapısı: `IService` ve `ServiceManager`
+- `AuthServiceException`, `ErrorType`, `ErrorMessage`, `GlobalExceptionHandler`
+- Auth0 `java-jwt` ile token üretme ve doğrulama
+- Postman collection
+
+### Day 2 endpointleri
+
+- `POST /auth/register`
+- `POST /auth/login`
+- `GET /auth/findAll?token=...`
+- `GET /auth/getMessage`
+
+JWT ayarları environment variable ile değiştirilebilir:
+
+- `AUTH_JWT_SECRET`
+- `AUTH_JWT_ISSUER`
+- `AUTH_JWT_EXPIRE_MS`
+
+> Not: Referans eğitim akışına paralel olarak Day 2'de parola alanı doğrudan karşılaştırılmaktadır. Gerçek üretim sistemlerinde parola hash'leme ve Spring Security gibi güvenlik mekanizmaları kullanılmalıdır.
