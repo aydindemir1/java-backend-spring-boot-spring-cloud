@@ -545,6 +545,202 @@ Bu üç repository ayrı ayrı üç kez tamamlanmış eğitim olarak sayılmaz. 
 
 ---
 
+# 378 Sonrası Teknoloji Genişleme Roadmap'i
+
+Bu bölüm, 50–378 arasındaki ana roadmap tamamlandıktan sonra uygulanacak **teknoloji genişleme fazlarını** tanımlar. Ana programlama dili **Java**, ana backend framework'ü **Spring Boot**, container/runtime omurgası ise **Docker + Kubernetes** olarak kalır.
+
+Amaç, aynı problemi gereksiz yere farklı araçlarla tekrar etmek değil; farklı veri modelleri, dağıtık sistem özellikleri, operasyon modelleri ve platform yaklaşımlarını öğrenmektir.
+
+## 19 - Alternative Databases & Data Stores
+
+**Proje aralığı:** 379–415
+
+| No | Proje | Track | Seviye | Tip | Önkoşul |
+|---:|---|---|---|---|---|
+| 379 | `mysql-architecture-storage-engines` | Data | Advanced | Lab | 70 |
+| 380 | `mysql-indexing-explain` | Data | Advanced | Lab | 379 |
+| 381 | `mysql-transactions-isolation-locking` | Data | Advanced | Failure Lab | 379 |
+| 382 | `mysql-query-optimization` | Data | Senior | Failure Lab | 380,381 |
+| 383 | `mysql-replication` | Data | Senior | Integration | 381 |
+| 384 | `mysql-backup-pitr` | Data | Senior | Failure Lab | 383 |
+| 385 | `mysql-ha-failover` | Data | Senior | Integration | 383,384 |
+| 386 | `postgresql-vs-mysql` | Architecture | Senior | Comparison | 341,385 |
+| 387 | `cassandra-fundamentals` | Data | Advanced | Lab | 216 |
+| 388 | `cassandra-partition-key-data-modeling` | Data | Advanced | Lab | 387 |
+| 389 | `cassandra-consistency-levels` | Distributed Systems | Senior | Lab | 387,215 |
+| 390 | `cassandra-replication` | Data | Senior | Integration | 388,389 |
+| 391 | `cassandra-compaction-tombstones` | Data | Senior | Failure Lab | 388 |
+| 392 | `cassandra-hot-partition-lab` | Data | Senior | Failure Lab | 388,390 |
+| 393 | `cassandra-java-driver` | Java Backend | Advanced | Integration | 387 |
+| 394 | `spring-data-cassandra` | Spring | Advanced | Integration | 393 |
+| 395 | `cassandra-operations-ha` | Data | Senior | Capstone | 390,391,392,394 |
+| 396 | `postgresql-vs-cassandra` | Architecture | Staff | Comparison | 341,395 |
+| 397 | `neo4j-fundamentals` | Data | Advanced | Lab | 216 |
+| 398 | `neo4j-cypher` | Data | Advanced | Lab | 397 |
+| 399 | `neo4j-graph-modeling` | Data | Advanced | Integration | 398 |
+| 400 | `neo4j-indexes-constraints` | Data | Advanced | Lab | 399 |
+| 401 | `neo4j-traversal-performance` | Data | Senior | Failure Lab | 399,400 |
+| 402 | `spring-data-neo4j` | Spring | Advanced | Integration | 399 |
+| 403 | `neo4j-cluster-operations` | Data | Senior | Integration | 401,402 |
+| 404 | `rdbms-vs-graph-database` | Architecture | Staff | Comparison | 396,403 |
+| 405 | `clickhouse-fundamentals` | Data | Advanced | Lab | 70 |
+| 406 | `clickhouse-mergetree-modeling` | Data | Advanced | Lab | 405 |
+| 407 | `clickhouse-partitioning-ordering` | Data | Advanced | Lab | 406 |
+| 408 | `clickhouse-materialized-views` | Data | Senior | Integration | 407 |
+| 409 | `clickhouse-kafka-ingestion` | Data | Senior | Integration | 209,405 |
+| 410 | `clickhouse-performance-lab` | Performance | Senior | Failure Lab | 407,408 |
+| 411 | `postgresql-vs-clickhouse-oltp-olap` | Architecture | Staff | Comparison | 341,410 |
+| 412 | `timescaledb-fundamentals` | Data | Advanced | Integration | 341 |
+| 413 | `timescaledb-hypertables-retention` | Data | Senior | Lab | 412 |
+| 414 | `distributed-sql-fundamentals` | Data | Senior | Lab | 216 |
+| 415 | `cockroachdb-or-yugabytedb-lab` | Data | Staff | Comparison | 414 |
+
+## 20 - Big Data Foundations & Apache Spark
+
+**Proje aralığı:** 416–450
+
+| No | Proje | Track | Seviye | Tip | Önkoşul |
+|---:|---|---|---|---|---|
+| 416 | `big-data-distributed-processing-fundamentals` | Big Data | Advanced | Lab | 216 |
+| 417 | `hadoop-ecosystem-overview` | Big Data | Advanced | Lab | 416 |
+| 418 | `hdfs-fundamentals` | Big Data | Advanced | Lab | 417 |
+| 419 | `distributed-storage-replication-blocks` | Big Data | Advanced | Lab | 418 |
+| 420 | `parquet-columnar-storage` | Big Data | Advanced | Lab | 416 |
+| 421 | `avro-schema-serialization` | Big Data | Advanced | Lab | 207 |
+| 422 | `orc-columnar-storage` | Big Data | Advanced | Lab | 420 |
+| 423 | `compression-codecs-data-formats` | Big Data | Advanced | Comparison | 420,421,422 |
+| 424 | `spark-fundamentals` | Big Data | Advanced | Lab | 416 |
+| 425 | `spark-dataframes-datasets` | Big Data | Advanced | Lab | 424 |
+| 426 | `spark-sql` | Big Data | Advanced | Integration | 425 |
+| 427 | `spark-rdd-internals` | Big Data | Advanced | Lab | 424 |
+| 428 | `spark-partitioning` | Big Data | Advanced | Lab | 425 |
+| 429 | `spark-shuffle-internals` | Big Data | Senior | Failure Lab | 428 |
+| 430 | `spark-join-strategies` | Big Data | Senior | Lab | 426,429 |
+| 431 | `spark-cache-persist` | Big Data | Advanced | Lab | 425 |
+| 432 | `spark-memory-execution-model` | Big Data | Senior | Lab | 429,431 |
+| 433 | `spark-performance-tuning` | Performance | Senior | Failure Lab | 430,432 |
+| 434 | `spark-skew-failure-lab` | Performance | Senior | Failure Lab | 428,433 |
+| 435 | `spark-structured-streaming` | Big Data | Senior | Integration | 424,203 |
+| 436 | `spark-kafka-streaming` | Big Data | Senior | Integration | 435,203 |
+| 437 | `spark-checkpointing-watermarks` | Big Data | Senior | Failure Lab | 435 |
+| 438 | `spark-postgresql-jdbc-ingestion` | Big Data | Advanced | Integration | 426,341 |
+| 439 | `spark-minio-object-storage` | Big Data | Advanced | Integration | 163,424 |
+| 440 | `spark-parquet-pipeline` | Big Data | Senior | Integration | 420,425 |
+| 441 | `spark-cassandra-integration` | Big Data | Senior | Integration | 395,424 |
+| 442 | `spark-clickhouse-integration` | Big Data | Senior | Integration | 410,424 |
+| 443 | `spark-batch-etl-capstone` | Big Data | Senior | Capstone | 433,438,439,440 |
+| 444 | `spark-streaming-capstone` | Big Data | Senior | Capstone | 436,437 |
+| 445 | `spark-observability` | Observability | Senior | Integration | 259,433 |
+| 446 | `spark-failure-recovery` | Big Data | Senior | Failure Lab | 443,445 |
+| 447 | `spark-on-kubernetes` | Big Data | Senior | Integration | 280,424 |
+| 448 | `spark-resource-tuning-kubernetes` | Performance | Senior | Failure Lab | 447 |
+| 449 | `java-spring-to-spark-job-orchestration` | Integration | Senior | Integration | 443 |
+| 450 | `big-data-spark-production-capstone` | Big Data | Staff | Capstone | 444,446,448,449 |
+
+## 21 - Flink Lakehouse Trino Airflow
+
+**Proje aralığı:** 451–485
+
+| No | Proje | Track | Seviye | Tip | Önkoşul |
+|---:|---|---|---|---|---|
+| 451 | `flink-fundamentals` | Big Data | Advanced | Lab | 416 |
+| 452 | `flink-datastream-api` | Big Data | Advanced | Lab | 451 |
+| 453 | `flink-event-time-processing-time` | Big Data | Senior | Lab | 452 |
+| 454 | `flink-watermarks-windows` | Big Data | Senior | Integration | 453 |
+| 455 | `flink-keyed-state` | Big Data | Senior | Integration | 452 |
+| 456 | `flink-checkpointing-savepoints` | Big Data | Senior | Failure Lab | 455 |
+| 457 | `flink-exactly-once` | Distributed Systems | Senior | Failure Lab | 456,206 |
+| 458 | `flink-backpressure` | Performance | Senior | Failure Lab | 452 |
+| 459 | `flink-kafka-integration` | Big Data | Senior | Integration | 203,452 |
+| 460 | `flink-failure-recovery` | Big Data | Senior | Failure Lab | 456,458,459 |
+| 461 | `spark-streaming-vs-flink` | Architecture | Staff | Comparison | 444,460 |
+| 462 | `iceberg-fundamentals` | Lakehouse | Advanced | Lab | 420 |
+| 463 | `iceberg-schema-evolution` | Lakehouse | Advanced | Lab | 462 |
+| 464 | `iceberg-partition-evolution` | Lakehouse | Senior | Lab | 462 |
+| 465 | `iceberg-snapshots-time-travel` | Lakehouse | Senior | Lab | 462 |
+| 466 | `iceberg-compaction-maintenance` | Lakehouse | Senior | Failure Lab | 464,465 |
+| 467 | `spark-iceberg` | Lakehouse | Senior | Integration | 440,462 |
+| 468 | `flink-iceberg` | Lakehouse | Senior | Integration | 459,462 |
+| 469 | `lakehouse-capstone` | Lakehouse | Staff | Capstone | 466,467,468 |
+| 470 | `trino-fundamentals` | Big Data | Advanced | Lab | 416 |
+| 471 | `trino-connectors` | Big Data | Advanced | Integration | 470 |
+| 472 | `trino-federated-query` | Big Data | Senior | Integration | 471,341,395 |
+| 473 | `trino-iceberg` | Lakehouse | Senior | Integration | 469,470 |
+| 474 | `trino-performance-lab` | Performance | Senior | Failure Lab | 472,473 |
+| 475 | `airflow-fundamentals` | Orchestration | Advanced | Lab | 416 |
+| 476 | `airflow-dag-task-dependencies` | Orchestration | Advanced | Lab | 475 |
+| 477 | `airflow-scheduling-retries` | Orchestration | Advanced | Failure Lab | 476 |
+| 478 | `airflow-sensors-backfills` | Orchestration | Senior | Lab | 477 |
+| 479 | `airflow-spark-orchestration` | Orchestration | Senior | Integration | 443,475 |
+| 480 | `airflow-flink-orchestration` | Orchestration | Senior | Integration | 460,475 |
+| 481 | `airflow-data-quality` | Orchestration | Senior | Integration | 475 |
+| 482 | `airflow-failure-recovery-lab` | Orchestration | Senior | Failure Lab | 477,481 |
+| 483 | `data-platform-observability` | Observability | Staff | Integration | 259,450,469,474,482 |
+| 484 | `batch-vs-stream-processing` | Architecture | Staff | Comparison | 450,460 |
+| 485 | `big-data-platform-capstone` | Big Data | Staff | Capstone | 469,474,483,484 |
+
+## 22 - Alternative DevOps Platform & API Gateway Tools
+
+**Proje aralığı:** 486–515
+
+| No | Proje | Track | Seviye | Tip | Önkoşul |
+|---:|---|---|---|---|---|
+| 486 | `gitlab-ci-fundamentals` | CI/CD | Advanced | Integration | 301 |
+| 487 | `gitlab-ci-reusable-pipelines` | CI/CD | Senior | Integration | 486 |
+| 488 | `github-actions-vs-gitlab-ci-vs-jenkins` | CI/CD | Staff | Comparison | 301,486 |
+| 489 | `tekton-fundamentals` | CI/CD | Advanced | Integration | 272,301 |
+| 490 | `tekton-tasks-pipelines-workspaces` | CI/CD | Senior | Integration | 489 |
+| 491 | `tekton-triggers` | CI/CD | Senior | Integration | 490 |
+| 492 | `tekton-supply-chain-pipeline` | DevSecOps | Senior | Capstone | 313,490,491 |
+| 493 | `jenkins-vs-tekton` | CI/CD | Staff | Comparison | 489,492 |
+| 494 | `fluxcd-fundamentals` | GitOps | Advanced | Integration | 306 |
+| 495 | `fluxcd-kustomize-helm` | GitOps | Senior | Integration | 494 |
+| 496 | `argocd-vs-fluxcd` | GitOps | Staff | Comparison | 307,495 |
+| 497 | `apache-apisix-fundamentals` | API Gateway | Advanced | Integration | 243 |
+| 498 | `apisix-routing-upstreams` | API Gateway | Advanced | Integration | 497 |
+| 499 | `apisix-auth-rate-limit` | API Gateway | Senior | Integration | 497 |
+| 500 | `apisix-observability` | Observability | Senior | Integration | 259,497 |
+| 501 | `apisix-kubernetes-ingress` | Kubernetes | Senior | Integration | 275,497 |
+| 502 | `kong-gateway-fundamentals` | API Gateway | Advanced | Integration | 243 |
+| 503 | `kong-plugins-auth-rate-limit` | API Gateway | Senior | Integration | 502 |
+| 504 | `kong-kubernetes-integration` | Kubernetes | Senior | Integration | 275,502 |
+| 505 | `spring-cloud-gateway-vs-apisix-vs-kong` | Architecture | Staff | Comparison | 247,501,504 |
+| 506 | `envoy-proxy-fundamentals` | Networking | Advanced | Lab | 265 |
+| 507 | `envoy-routing-load-balancing` | Networking | Senior | Integration | 506 |
+| 508 | `envoy-observability` | Observability | Senior | Integration | 259,506 |
+| 509 | `nginx-vs-envoy` | Architecture | Staff | Comparison | 268,508 |
+| 510 | `traefik-fundamentals` | Networking | Advanced | Integration | 275 |
+| 511 | `traefik-kubernetes-ingress` | Kubernetes | Senior | Integration | 510 |
+| 512 | `ingress-gateway-comparison-lab` | Architecture | Staff | Comparison | 501,504,511 |
+| 513 | `external-secrets-operator` | DevSecOps | Senior | Integration | 310,323 |
+| 514 | `sops-gitops-secrets` | DevSecOps | Senior | Integration | 310 |
+| 515 | `vault-vs-external-secrets-vs-sops` | DevSecOps | Staff | Comparison | 323,513,514 |
+
+## 23 - Alternative Messaging Workflow & Final Comparisons
+
+**Proje aralığı:** 516–530
+
+| No | Proje | Track | Seviye | Tip | Önkoşul |
+|---:|---|---|---|---|---|
+| 516 | `apache-pulsar-fundamentals` | Messaging | Advanced | Integration | 203 |
+| 517 | `pulsar-topics-subscriptions` | Messaging | Advanced | Lab | 516 |
+| 518 | `pulsar-partitioning-retention` | Messaging | Senior | Integration | 517 |
+| 519 | `pulsar-functions-connectors` | Messaging | Senior | Integration | 516 |
+| 520 | `kafka-vs-pulsar` | Architecture | Staff | Comparison | 213,519 |
+| 521 | `temporal-fundamentals` | Workflow | Advanced | Integration | 161 |
+| 522 | `temporal-workflows-activities` | Workflow | Advanced | Integration | 521 |
+| 523 | `temporal-retries-timeouts` | Workflow | Senior | Failure Lab | 522 |
+| 524 | `temporal-saga-compensation` | Workflow | Senior | Integration | 366,522 |
+| 525 | `spring-batch-vs-airflow-vs-temporal` | Architecture | Staff | Comparison | 155,482,524 |
+| 526 | `alternative-databases-capstone` | Data | Staff | Capstone | 396,404,411,415 |
+| 527 | `big-data-architecture-comparison-capstone` | Big Data | Principal | Capstone | 485,520 |
+| 528 | `alternative-platform-engineering-capstone` | Platform | Staff | Capstone | 496,505,512,515 |
+| 529 | `polyglot-data-streaming-platform-capstone` | Architecture | Principal | Capstone | 450,469,485,520,526 |
+| 530 | `principal-technology-selection-capstone` | Architecture | Principal | Capstone | 527,528,529 |
+
+
+---
+
 ## Son Audit Notu
 
 Bu liste nihai ve değişmez değildir. Eğitim çalışmaları tamamlandıktan sonra:
