@@ -1,0 +1,60 @@
+ext {
+
+    /*
+     * Merkezi versiyon yönetimi
+     */
+    versions = [
+            springBoot          : "4.1.1",
+            lombok              : "1.18.42",
+            postgreSql          : "42.7.8",
+            mysql               : "9.7.0"
+    ]
+
+
+    /*
+     * Merkezi dependency listesi
+     *
+     * Kullanım örneği:
+     * implementation libs.springBootWeb
+     * implementation libs.springBootDataJpa
+     */
+    libs = [
+
+            /*
+             * Spring Boot
+             */
+            springBootWeb                   : "org.springframework.boot:spring-boot-starter-webmvc:$versions.springBoot",
+
+            springBootDataJpa               : "org.springframework.boot:spring-boot-starter-data-jpa:$versions.springBoot",
+
+            springBootActuator              : "org.springframework.boot:spring-boot-starter-actuator:$versions.springBoot",
+
+            springBootDevtools              : "org.springframework.boot:spring-boot-devtools:$versions.springBoot",
+
+
+            /*
+             * Database
+             */
+            postgreSql                      : "org.postgresql:postgresql:$versions.postgreSql",
+
+            mysql                           : "com.mysql:mysql-connector-j:$versions.mysql",
+
+
+            /*
+             * Lombok
+             */
+            lombok                          : "org.projectlombok:lombok:$versions.lombok",
+
+
+            /*
+             * Testing
+             */
+            springBootActuatorTest          : "org.springframework.boot:spring-boot-starter-actuator-test:$versions.springBoot",
+
+            springBootDataJpaTest           : "org.springframework.boot:spring-boot-starter-data-jpa-test:$versions.springBoot",
+
+            springBootWebTest               : "org.springframework.boot:spring-boot-starter-webmvc-test:$versions.springBoot",
+
+            junitPlatformLauncher           : "org.junit.platform:junit-platform-launcher"
+    ]
+}
