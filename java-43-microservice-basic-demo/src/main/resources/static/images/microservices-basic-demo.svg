@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="blue" x1="0" x2="1">
+      <stop offset="0%" stop-color="#1677d2"/>
+      <stop offset="100%" stop-color="#2f8dea"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" x2="1">
+      <stop offset="0%" stop-color="#1496b8"/>
+      <stop offset="100%" stop-color="#21a7a8"/>
+    </linearGradient>
+    <style>
+      .title{font:700 54px Arial,sans-serif;fill:#0d3871}
+      .subtitle{font:400 30px Arial,sans-serif;fill:#7b92b5}
+      .rootTitle{font:700 34px Arial,sans-serif;fill:white}
+      .rootName{font:700 26px Arial,sans-serif;fill:#0d3871}
+      .serviceTitle{font:700 34px Arial,sans-serif;fill:white}
+      .port{font:400 24px Arial,sans-serif;fill:#d7f1ff}
+      .item{font:400 24px Arial,sans-serif;fill:#102f5f}
+      .path{font:400 19px Arial,sans-serif;fill:#687f9e}
+      .footer{font:400 24px Arial,sans-serif;fill:#6c84a7}
+      .line{stroke:#2687dc;stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+      .panel{fill:#f8fbff;stroke:#3aa0dd;stroke-width:2}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="#ffffff"/>
+  <text x="800" y="70" text-anchor="middle" class="title">Microservices - Modules</text>
+  <text x="800" y="115" text-anchor="middle" class="subtitle">java-43-microservice-basic-demo</text>
+
+  <rect x="500" y="155" rx="18" ry="18" width="600" height="165" class="panel"/>
+  <path d="M518 155h564a18 18 0 0 1 18 18v72H500v-72a18 18 0 0 1 18-18z" fill="url(#blue)"/>
+  <text x="800" y="215" text-anchor="middle" class="rootTitle">Root Project</text>
+  <text x="800" y="285" text-anchor="middle" class="rootName">java-43-microservice-basic-demo</text>
+
+  <path d="M800 320v55M800 375H280v55M800 375v55M800 375h520v55" class="line"/>
+  <path d="M265 415l15 18 15-18M785 415l15 18 15-18M1305 415l15 18 15-18" class="line"/>
+
+  <g transform="translate(60,435)">
+    <rect width="440" height="330" rx="18" class="panel"/>
+    <path d="M18 0h404a18 18 0 0 1 18 18v105H0V18A18 18 0 0 1 18 0z" fill="url(#teal)"/>
+    <text x="55" y="55" class="serviceTitle">ServiceA</text>
+    <text x="55" y="92" class="port">Port: 9091</text>
+    <text x="45" y="170" class="item">Spring Boot Application</text>
+    <text x="45" y="215" class="item">GET /</text>
+    <text x="45" y="260" class="item">GET /info</text>
+    <text x="45" y="305" class="item">Swagger UI</text>
+  </g>
+
+  <g transform="translate(580,435)">
+    <rect width="440" height="330" rx="18" class="panel"/>
+    <path d="M18 0h404a18 18 0 0 1 18 18v105H0V18A18 18 0 0 1 18 0z" fill="url(#blue)"/>
+    <text x="55" y="55" class="serviceTitle">ServiceB</text>
+    <text x="55" y="92" class="port">Port: 9092</text>
+    <text x="45" y="170" class="item">Spring Boot Application</text>
+    <text x="45" y="215" class="item">GET /</text>
+    <text x="45" y="260" class="item">GET /info</text>
+    <text x="45" y="305" class="item">Swagger UI</text>
+  </g>
+
+  <g transform="translate(1100,435)">
+    <rect width="440" height="330" rx="18" class="panel"/>
+    <path d="M18 0h404a18 18 0 0 1 18 18v105H0V18A18 18 0 0 1 18 0z" fill="url(#teal)"/>
+    <text x="55" y="55" class="serviceTitle">ServiceC</text>
+    <text x="55" y="92" class="port">Port: 9093</text>
+    <text x="45" y="170" class="item">Spring Boot Application</text>
+    <text x="45" y="215" class="item">GET /</text>
+    <text x="45" y="260" class="item">GET /info</text>
+    <text x="45" y="305" class="item">Swagger UI</text>
+  </g>
+
+  <text x="280" y="790" text-anchor="middle" class="path">/swagger-ui/index.html</text>
+  <text x="800" y="790" text-anchor="middle" class="path">/swagger-ui/index.html</text>
+  <text x="1320" y="790" text-anchor="middle" class="path">/swagger-ui/index.html</text>
+
+  <line x1="80" y1="835" x2="1520" y2="835" stroke="#dce7f4" stroke-width="2"/>
+  <text x="800" y="875" text-anchor="middle" class="footer">Gradle Multi-Module • Java 21 • Spring Boot 4.1.1</text>
+</svg>

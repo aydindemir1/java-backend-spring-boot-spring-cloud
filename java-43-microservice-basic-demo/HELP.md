@@ -2,13 +2,7 @@
 
 Bu proje, Gradle multi-module yapısında üç bağımsız Spring Boot servisini birlikte yönetmeyi göstermek için hazırlanmıştır.
 
-```mermaid
-flowchart LR
-    ROOT[java-43-microservice-basic-demo]
-    ROOT --> A[ServiceA : 9091]
-    ROOT --> B[ServiceB : 9092]
-    ROOT --> C[ServiceC : 9093]
-```
+![Microservices basic demo architecture](src/main/resources/static/images/microservices-basic-demo.svg)
 
 ## Servis adresleri
 
