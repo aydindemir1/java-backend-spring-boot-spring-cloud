@@ -17,6 +17,52 @@ Ana yaklaşım:
 - Aynı teknoloji yalnızca daha ileri bir problem, internals, production, failure veya architecture amacı varsa tekrar ele alınır.
 - Mümkün olduğunca ücretli cloud bağımlılığı olmadan Docker, Docker Compose, local Kubernetes, WSL/VM ve GitHub ile çalışılır.
 
+## Mevcut Eğitim Kaynakları ve Kapsam
+
+Bu roadmap sıfırdan öğrenilecek 384 bağımsız konu olarak değerlendirilmez. Önce mevcut eğitim çalışmaları tamamlanır; ardından bu roadmap, gerçekten öğrenilmiş ve uygulanmış konular dikkate alınarak yeniden audit edilir.
+
+### Ana Eğitim Akışı
+
+**Birincil eğitim kaynağı:** [mimaraslan/java-2024](https://github.com/mimaraslan/java-2024)
+
+Bu repository üzerinden ağırlıklı olarak şu zincir takip edilir:
+
+**Core Java → OOP → Collections / Generics / Stream API → Optional / Exception / Concurrency → SQL → JDBC → JPA / Hibernate → Spring Boot → MongoDB → Testing → Spring Security → Docker temelleri**
+
+**Microservices / Spring Cloud / Docker / Kubernetes devam kaynağı:** [mimaraslan/java-se-course](https://github.com/mimaraslan/java-se-course)
+
+Bu repository özellikle aşağıdaki bölüm için kullanılır:
+
+**Docker devamı → Microservices → Spring Cloud → servisler arası iletişim → Config Server → API Gateway → Service Discovery / Eureka → distributed service yapısı → DevOps / Kubernetes**
+
+[mimaraslan/java-se-edu](https://github.com/mimaraslan/java-se-edu) ise büyük ölçüde aynı eğitim ailesinin daha geniş/alternatif bir sürümüdür ve gerektiğinde konu kapsamını doğrulamak veya eksik bir bölümü karşılaştırmak için **referans kaynak** olarak değerlendirilir.
+
+> Üç repository ayrı ayrı tamamlanmış üç farklı eğitim olarak sayılmaz. Ancak `java-2024` ana akışı ile `java-se-course` içindeki Microservices / Spring Cloud / Docker / Kubernetes bölümleri uygulamalı olarak tamamlandığında, üç repository'de ortak bulunan konu kapsamının büyük bölümü fiilen çalışılmış ve öğrenilmiş kabul edilir.
+
+### Kendi Repository'mizin Rolü
+
+Bu repository ([aydindemir1/java-backend-spring-boot-spring-cloud](https://github.com/aydindemir1/java-backend-spring-boot-spring-cloud)) yalnızca eğitim kodlarının kopyası değildir. İzlenen konular burada yeniden uygulanır, geliştirilir ve zamanla daha ileri production senaryolarıyla derinleştirilir.
+
+Mevcut/plânlanan temel eksikler özellikle:
+
+- RDBMS ve SQL temelleri
+- JDBC
+- JPA / Hibernate
+- Spring Cloud tabanlı Microservices
+
+Bu bölümler eğitim akışı tamamlanırken repository'ye eklenecektir.
+
+### Roadmap Audit Kuralı
+
+Eğitimler tamamlandıktan sonra roadmap tekrar gözden geçirilir. Her başlık şu dört sınıftan birine ayrılır:
+
+- **Öğrenildi ve uygulandı:** Aynı derinlikte tekrar proje yapılmaz.
+- **Görüldü fakat yüzeysel kaldı:** Advanced / internals / production seviyesinde derinleştirilir.
+- **Hiç çalışılmadı:** Yeni öğrenme projesi olarak korunur.
+- **Temeli öğrenildi fakat Senior+ seviyesi eksik:** Failure Lab, Integration, observability, performance veya architecture projesine dönüştürülür.
+
+Bu nedenle mevcut **384 proje sayısı nihai ve değişmez bir hedef değildir**. Eğitim çalışmaları tamamlandıktan sonra gerçek coverage'a göre ekleme, silme, birleştirme ve yeniden sıralama yapılacaktır.
+
 ## Ana Öğrenme Hatları
 
 | Track | Amaç |
