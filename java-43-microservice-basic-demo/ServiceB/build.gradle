@@ -1,0 +1,3 @@
+dependencies {
+    // Servise özel bağımlılıklar burada tanımlanır.
+}

@@ -1,0 +1,5 @@
+dependencies {
+    // Servise özel bağımlılıklar burada tanımlanır.
+    // implementation libs.springBootDataJpa
+    // runtimeOnly libs.postgreSql
+}
