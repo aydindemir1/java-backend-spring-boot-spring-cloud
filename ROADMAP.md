@@ -1,14 +1,99 @@
 # Java Spring Boot + DevOps Master Roadmap
 
-Bu roadmap, repository'nin Java/Spring Boot backend, DevOps/Platform/SRE ve Software Architecture gelişim planını tek bir sırada toplar.
+Bu roadmap, repository'nin **Java/Spring Boot Backend**, **DevOps/Platform/SRE** ve **Software Architecture** gelişim planını tek bir öğrenme zincirinde toplar.
 
 > **Canonical plan:** 384 proje. Yeni bir proje eklenmeden önce mevcut repository kodu kontrol edilir; aynı konu aynı derinlikte tekrar edilmez.
 
+## Roadmap'in Amacı
+
+Bu repository yalnızca teknoloji örnekleri biriktirmek için değil; **Junior → Mid → Senior Java Backend → Senior DevOps/Platform → Staff/Principal/Architect** seviyelerine doğru uygulamalı mühendislik gelişimi sağlamak için tasarlanmıştır.
+
+Ana yaklaşım:
+
+- **Java** ana programlama dilidir.
+- **Spring Boot** ana backend framework'üdür.
+- Frontend yeni roadmap'in kapsamı dışındadır.
+- Konular önkoşul zincirine göre ilerler.
+- Aynı teknoloji yalnızca daha ileri bir problem, internals, production, failure veya architecture amacı varsa tekrar ele alınır.
+- Mümkün olduğunca ücretli cloud bağımlılığı olmadan Docker, Docker Compose, local Kubernetes, WSL/VM ve GitHub ile çalışılır.
+
+## Ana Öğrenme Hatları
+
+| Track | Amaç |
+|---|---|
+| **Java Backend** | Java dili, JVM, concurrency, persistence, Spring Boot ve production backend engineering |
+| **Data** | SQL, PostgreSQL, JDBC, JPA/Hibernate, MongoDB, Redis ve veri mimarileri |
+| **API & Integration** | REST, HTTP, GraphQL, gRPC, SOAP, realtime iletişim ve enterprise integration |
+| **Messaging & Distributed Systems** | RabbitMQ, Kafka, CDC, resilience, consistency, Saga ve distributed patterns |
+| **Architecture** | Clean/Hexagonal/Onion, DDD, modular monolith, microservices, CQRS ve Event Sourcing |
+| **DevOps / Platform** | Docker, Linux, networking, Kubernetes, Helm, CI/CD, GitOps, IaC ve platform engineering |
+| **Security / DevSecOps** | Spring Security, OAuth2/OIDC, Keycloak, mTLS, secrets, container/Kubernetes security |
+| **Observability / SRE** | Metrics, logs, traces, SLI/SLO, incident management, HA, DR, performance ve chaos engineering |
+
+## Seviye Modeli
+
+| Seviye | Beklenti |
+|---|---|
+| **Beginner** | Kavramı doğru kullanabilmek ve temel davranışı açıklayabilmek |
+| **Intermediate** | Birkaç kavramı birlikte kullanarak çalışan backend oluşturabilmek |
+| **Advanced** | Framework/runtime davranışını, edge case'leri ve performans etkilerini anlayabilmek |
+| **Senior** | Production problemlerini teşhis etmek, trade-off değerlendirmek ve güvenilir çözüm tasarlamak |
+| **Staff** | Birden fazla sistem/ekip sınırını etkileyen mimari kararları gerekçelendirebilmek |
+| **Principal** | Teknik strateji, platform, migration, reliability ve architecture governance seviyesinde karar verebilmek |
+
+## Proje Tipleri
+
+| Tip | Tanım | Tamamlanmış Sayılması İçin |
+|---|---|---|
+| **Lab** | Tek bir mekanizmayı izole biçimde öğrenme | Çalışan örnek + test/kanıt + kısa teknik açıklama |
+| **Integration** | Birden fazla bileşeni beraber kullanma | Happy path + gerçekçi failure path + integration test |
+| **Failure Lab** | Sistemi bilinçli şekilde bozup teşhis etme | Hatanın üretilmesi + gözlem + root cause + çözüm + regression test |
+| **Comparison** | Aynı problemi iki veya daha fazla yaklaşımla çözme | Ölçüm/karşılaştırma + decision matrix + kısa ADR |
+| **Capstone** | Fazdaki bilgileri uçtan uca bir sistemde birleştirme | Test + observability + failure/recovery + dokümantasyon + mimari karar kayıtları |
+
 ## Çalışma Standardı
 
-Her proje mümkün olduğunca şu döngüyle ilerler: **Problem → Kısa teori → Uygulama → Test → Failure scenario → Ölçüm/debug → Trade-off → README → Commit → Teknik kontrol**.
+Her proje mümkün olduğunca şu döngüyle ilerler:
 
-Proje tipleri: **Lab** (tek kavram), **Integration** (birkaç bileşeni birleştirir), **Failure Lab** (bilerek bozar ve teşhis eder), **Comparison** (aynı problemi farklı yaklaşımlarla karşılaştırır), **Capstone** (uçtan uca sistem).
+**Problem → Kısa teori → Uygulama → Test → Failure scenario → Ölçüm/debug → Trade-off → README → Commit → Teknik kontrol**
+
+Bir proje yalnızca "çalışıyor" diye tamamlanmış sayılmaz. İlgili seviyeye göre mümkün olduğunca:
+
+1. Problemin neden var olduğu açıklanır.
+2. En basit çalışan çözüm kurulur.
+3. Testler yazılır.
+4. En az bir edge/failure senaryosu denenir.
+5. Log, metric, trace, profiler veya execution plan gibi kanıtlarla davranış gözlemlenir.
+6. Alternatifler ve trade-off'lar açıklanır.
+7. README güncellenir.
+8. Açıklayıcı commit ile repository'ye eklenir.
+9. Konu kısa teknik sorularla tekrar edilir.
+
+## Faz Özeti
+
+| Faz | Proje Aralığı | Odak |
+|---|---:|---|
+| 01 | 1–21 | Java Fundamentals |
+| 02 | 22–34 | RDBMS / SQL / JDBC / JPA / Hibernate Foundations |
+| 03 | 35–42 | Existing Spring Boot Foundations |
+| 04 | 43–62 | Advanced Java / JVM / Build Engineering |
+| 05 | 63–84 | Advanced SQL / PostgreSQL / Persistence |
+| 06 | 85–109 | Spring Core / Boot / MVC / API |
+| 07 | 110–128 | DB Migrations / Multi-Tenancy / Security |
+| 08 | 129–147 | MongoDB / Cache / Reactive / Realtime |
+| 09 | 148–166 | Batch / Workflow / Files / Enterprise Integration |
+| 10 | 167–176 | Advanced Testing |
+| 11 | 177–190 | Advanced Docker / Container Runtime |
+| 12 | 191–209 | Messaging / RabbitMQ / Kafka / CDC |
+| 13 | 210–228 | Distributed Systems / Resilience |
+| 14 | 229–251 | Architecture / DDD / Modulith / Microservices |
+| 15 | 252–263 | Search / Observability |
+| 16 | 264–274 | Linux / Networking / Reverse Proxy |
+| 17 | 275–301 | Kubernetes Fundamentals / Advanced / Internals |
+| 18 | 302–329 | Helm / CI-CD / GitOps / IaC / DevSecOps |
+| 19 | 330–348 | SRE / HA / Performance / Release Engineering |
+| 20 | 349–365 | Advanced Architecture / CQRS / Event Sourcing / Staff-Principal |
+| 21 | 366–384 | Capstones / Failure Engineering / Principal |
 
 ---
 
