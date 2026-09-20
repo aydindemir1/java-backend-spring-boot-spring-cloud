@@ -3,11 +3,8 @@
  * Referans eğitim projesindeki multi-module yapı Java 21 ve Spring Boot 4.1.1'e uyarlanmıştır.
  */
 plugins {
-    id 'java'
     id 'org.springframework.boot' version '4.1.1' apply false
     id 'io.spring.dependency-management' version '1.1.7' apply false
-    id 'application' apply false
-    id 'java-library' apply false
 }
 
 allprojects {
