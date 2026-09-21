@@ -57,6 +57,61 @@ Day 2'de kayıt/giriş iş mantığı, DTO'lar, hata yönetimi ve JWT tabanlı a
 - Auth0 `java-jwt` ile token üretme ve doğrulama
 - Postman collection
 
+### Day 2 Yapısı
+
+```text
+java-44-microservice-project
+├── AuthService
+│   ├── build.gradle
+│   └── src
+│       ├── main
+│       │   ├── java/com/aydindemir
+│       │   │   ├── AuthServiceApplication.java
+│       │   │   ├── constant
+│       │   │   │   └── EndPoint.java
+│       │   │   ├── controller
+│       │   │   │   ├── AuthController.java
+│       │   │   │   └── HelloController.java
+│       │   │   ├── dto
+│       │   │   │   ├── request
+│       │   │   │   │   ├── DoLoginRequestDto.java
+│       │   │   │   │   └── DoRegisterRequestDto.java
+│       │   │   │   └── response
+│       │   │   │       ├── DoRegisterResponseDto.java
+│       │   │   │       ├── DoRegisterResponseEmailDto.java
+│       │   │   │       ├── DoRegisterResponseIdDto.java
+│       │   │   │       ├── DoRegisterResponseIdUsernameEmailDto.java
+│       │   │   │       ├── DoRegisterResponseUsernameDto.java
+│       │   │   │       └── DoRegisterResponseUsernameEmailDto.java
+│       │   │   ├── exception
+│       │   │   │   ├── AuthServiceException.java
+│       │   │   │   ├── ErrorMessage.java
+│       │   │   │   ├── ErrorType.java
+│       │   │   │   └── GlobalExceptionHandler.java
+│       │   │   ├── model
+│       │   │   │   ├── Auth.java
+│       │   │   │   └── BaseEntity.java
+│       │   │   ├── repository
+│       │   │   │   └── IAuthRepository.java
+│       │   │   ├── service
+│       │   │   │   ├── AuthService.java
+│       │   │   │   ├── IService.java
+│       │   │   │   └── ServiceManager.java
+│       │   │   └── utils
+│       │   │       └── JwtTokenManager.java
+│       │   └── resources
+│       │       ├── application.properties
+│       │       └── application.yml
+│       └── test
+├── Microservices-Project.postman_collection.json
+├── docker-compose.yml
+├── build.gradle
+├── dependencies.gradle
+├── settings.gradle
+├── gradlew
+└── gradlew.bat
+```
+
 ### Day 2 endpointleri
 
 - `POST /auth/register`
