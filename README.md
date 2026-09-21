@@ -8,10 +8,13 @@ Repository içerisinde Java, nesne yönelimli programlama, koleksiyonlar, Stream
 
 * Java
 * Maven
+* Gradle
 * SQL
 * RDBMS
 * JDBC
 * Spring Boot
+* Spring Cloud
+* Spring Cloud OpenFeign
 * Spring Security
 * Spring Web
 * Spring Data JPA
@@ -102,6 +105,18 @@ Spring Data Redis ve Spring Cache ile Redis veri yapıları, TTL, cache-aside, P
 
 Spring Security ve JWT tabanlı kimlik doğrulama/yetkilendirme projesidir. Stateless authentication, RBAC, `SecurityFilterChain`, `UserDetailsService`, BCrypt, kısa ömürlü JWT access token, refresh token rotation/revocation, logout/logout-all, PostgreSQL/MySQL, Flyway migration, OpenAPI/Swagger, global exception handling, JUnit/Mockito, MockMvc ve PostgreSQL Testcontainers entegrasyon testlerini içerir.
 
+`java-42-hello-docker`
+
+Spring Boot uygulamasının JAR'dan Docker image'a, image'dan container'a ve Docker Hub'a taşınması sürecini uygulamalı olarak ele alır. Dockerfile, image/container yaşam döngüsü, port mapping, Docker registry, Docker Hub ve container tabanlı deployment temellerini içerir.
+
+`java-43-microservice-basic-demo`
+
+Java 21 ve Spring Boot 4.1.1 ile hazırlanmış temel bir multi-module microservice demonstrasyonudur. `ServiceA`, `ServiceB` ve `ServiceC` modülleri üzerinden Gradle multi-project yapısı, bağımsız Spring Boot servisleri, ortak dependency yönetimi, ayrı servis konfigürasyonları ve microservice temel organizasyonu uygulanır.
+
+`java-44-microservice-project`
+
+Adım adım geliştirilen çok modüllü Spring Boot microservice projesidir. AuthService ile başlayan yapı; JWT tabanlı authentication, merkezi exception handling, PostgreSQL, Docker Compose ve MapStruct altyapısından sonra UserProfileService, AgentService, BuyerService, PropertyService ve SellerService ile genişletilmiştir. Spring Cloud OpenFeign kullanılarak `AuthService -> UserProfileService` senkron servisler arası iletişim akışı kurulmuştur. Proje ilerleyen günlerde Config Server, API Gateway ve service discovery bileşenleriyle genişletilecektir.
+
 ## Backend Mimarisi
 
 ```text
@@ -146,6 +161,9 @@ Database
 * Redis Pub/Sub ve Streams
 * Distributed Lock ve Rate Limiting
 * Docker ve Docker Compose
+* Multi-module Gradle projeleri
+* Microservice mimarisi temelleri
+* Spring Cloud OpenFeign ile servisler arası iletişim
 * Unit Test
 * Web MVC Test
 * Repository Test
