@@ -41,6 +41,8 @@ subprojects {
 
         testImplementation libs.springBootTest
         testRuntimeOnly libs.junitPlatformLauncher
+        
+        implementation libs.jwt
     }
 
     tasks.named('test') {
