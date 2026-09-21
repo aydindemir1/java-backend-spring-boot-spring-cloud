@@ -1,11 +1,12 @@
 ext {
     versions = [
-            springBoot : "4.1.1",
-            lombok     : "1.18.42",
-            mapStruct  : "1.6.3",
-            postgreSql : "42.7.8",
-            swaggerApi : "3.1.1",
-            jwt        : "4.6.1"
+            springBoot  : "4.1.1",
+            springCloud : "2025.1.3",
+            lombok      : "1.18.42",
+            mapStruct   : "1.6.3",
+            postgreSql  : "42.7.8",
+            swaggerApi  : "3.1.1",
+            jwt         : "4.6.1"
     ]
 
     libs = [
@@ -13,6 +14,8 @@ ext {
             springBootDataJpa      : "org.springframework.boot:spring-boot-starter-data-jpa:$versions.springBoot",
             springBootTest         : "org.springframework.boot:spring-boot-starter-test:$versions.springBoot",
             junitPlatformLauncher  : "org.junit.platform:junit-platform-launcher",
+
+            springCloudOpenFeign   : "org.springframework.cloud:spring-cloud-starter-openfeign",
 
             postgreSql             : "org.postgresql:postgresql:$versions.postgreSql",
 

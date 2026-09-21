@@ -24,3 +24,7 @@ authservice:
   issuer: ${AUTH_JWT_ISSUER:java-44-auth-service}
   expire:
     date: ${AUTH_JWT_EXPIRE_MS:300000}
+
+services:
+  user-profile:
+    url: ${USER_PROFILE_SERVICE_URL:http://localhost:9091}

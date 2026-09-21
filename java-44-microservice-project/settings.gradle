@@ -1,3 +1,8 @@
 rootProject.name = 'java-44-microservice-project'
 
 include 'AuthService'
+include 'UserProfileService'
+include 'AgentService'
+include 'BuyerService'
+include 'SellerService'
+include 'PropertyService'

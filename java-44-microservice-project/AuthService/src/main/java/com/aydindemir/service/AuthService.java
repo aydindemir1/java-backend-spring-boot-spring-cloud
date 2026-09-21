@@ -5,6 +5,8 @@ import com.aydindemir.dto.request.DoRegisterRequestDto;
 import com.aydindemir.dto.response.DoRegisterResponseDto;
 import com.aydindemir.exception.AuthServiceException;
 import com.aydindemir.exception.ErrorType;
+import com.aydindemir.manager.IUserProfileManager;
+import com.aydindemir.mapper.IAuthMapper;
 import com.aydindemir.model.Auth;
 import com.aydindemir.repository.IAuthRepository;
 import com.aydindemir.utils.JwtTokenManager;
@@ -18,11 +20,16 @@ public class AuthService extends ServiceManager<Auth, Long> {
 
     private final IAuthRepository authRepository;
     private final JwtTokenManager jwtTokenManager;
+    private final IUserProfileManager userProfileManager;
 
-    public AuthService(IAuthRepository authRepository, JwtTokenManager jwtTokenManager) {
+    public AuthService(
+            IAuthRepository authRepository,
+            JwtTokenManager jwtTokenManager,
+            IUserProfileManager userProfileManager) {
         super(authRepository);
         this.authRepository = authRepository;
         this.jwtTokenManager = jwtTokenManager;
+        this.userProfileManager = userProfileManager;
     }
 
     public DoRegisterResponseDto doRegister(DoRegisterRequestDto dto) {
@@ -34,15 +41,13 @@ public class AuthService extends ServiceManager<Auth, Long> {
             throw new AuthServiceException(ErrorType.REGISTER_USERNAME_EXISTS);
         }
 
-        Auth auth = save(
-                Auth.builder()
-                        .username(dto.getUsername())
-                        .email(dto.getEmail())
-                        .password(dto.getPassword())
-                        .state(true)
-                        .createdAt(System.currentTimeMillis())
-                        .build()
-        );
+        Auth auth = IAuthMapper.INSTANCE.toAuth(dto);
+        auth.setState(true);
+        auth.setCreatedAt(System.currentTimeMillis());
+
+        auth = save(auth);
+
+        userProfileManager.save(IAuthMapper.INSTANCE.fromAuth(auth));
 
         return DoRegisterResponseDto.builder()
                 .id(auth.getId())

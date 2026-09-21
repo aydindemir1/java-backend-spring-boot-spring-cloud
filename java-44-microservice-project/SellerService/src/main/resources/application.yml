@@ -1,0 +1,10 @@
+server:
+  port: 9095
+
+spring:
+  application:
+    name: seller-service
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
