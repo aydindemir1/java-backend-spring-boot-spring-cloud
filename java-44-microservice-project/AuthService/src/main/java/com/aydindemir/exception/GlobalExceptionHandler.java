@@ -20,6 +20,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(errorType.getHttpStatus()).body(errorMessage);
     }
 
+    
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorMessage> handleRuntimeException(RuntimeException exception) {
         ErrorType errorType = ErrorType.INTERNAL_SERVER_ERROR;
@@ -32,4 +33,22 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(errorType.getHttpStatus()).body(errorMessage);
     }
+   
+    /*
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ErrorMessage> handleRuntimeException(RuntimeException exception) {
+
+        exception.printStackTrace();
+
+        ErrorType errorType = ErrorType.INTERNAL_SERVER_ERROR;
+
+        ErrorMessage errorMessage = ErrorMessage.builder()
+                .code(errorType.getCode())
+                .message(exception.getMessage())
+                .status(errorType.getHttpStatus())
+                .build();
+
+        return ResponseEntity.status(errorType.getHttpStatus()).body(errorMessage);
+    }
+     */
 }

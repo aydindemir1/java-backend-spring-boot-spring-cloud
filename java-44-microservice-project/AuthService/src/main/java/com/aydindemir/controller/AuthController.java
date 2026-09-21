@@ -41,8 +41,15 @@ public class AuthController {
         return ResponseEntity.ok(authService.doLogin(dto));
     }
 
+    /*
     @GetMapping(FIND_ALL)
     public ResponseEntity<List<Auth>> findAll(@RequestParam String token) {
+        return ResponseEntity.ok(authService.findAll(token));
+    }
+    */
+    
+    @GetMapping(FIND_ALL)
+    public ResponseEntity<List<Auth>> findAll(@RequestParam("token") String token) {
         return ResponseEntity.ok(authService.findAll(token));
     }
 
