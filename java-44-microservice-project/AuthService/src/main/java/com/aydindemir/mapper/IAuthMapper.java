@@ -5,12 +5,10 @@ import com.aydindemir.dto.request.UserProfileSaveRequestDto;
 import com.aydindemir.model.Auth;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.MappingConstants;
 
-@Mapper
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface IAuthMapper {
-
-    IAuthMapper INSTANCE = Mappers.getMapper(IAuthMapper.class);
 
     Auth toAuth(DoRegisterRequestDto dto);
 
