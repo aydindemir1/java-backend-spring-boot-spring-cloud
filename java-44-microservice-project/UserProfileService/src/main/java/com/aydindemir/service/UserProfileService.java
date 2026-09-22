@@ -9,12 +9,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserProfileService extends ServiceManager<UserProfile, Long> {
 
-    public UserProfileService(IUserProfileRepository repository) {
+    private final IUserProfileMapper userProfileMapper;
+
+    public UserProfileService(
+            IUserProfileRepository repository,
+            IUserProfileMapper userProfileMapper) {
         super(repository);
+        this.userProfileMapper = userProfileMapper;
     }
 
     public boolean save(UserProfileSaveRequestDto dto) {
-        UserProfile userProfile = IUserProfileMapper.INSTANCE.toUserProfile(dto);
+        UserProfile userProfile = userProfileMapper.toUserProfile(dto);
         userProfile.setState(true);
         userProfile.setCreatedAt(System.currentTimeMillis());
 
