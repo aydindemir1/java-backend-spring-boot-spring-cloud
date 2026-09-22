@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: ${CONFIG_REPO_URI:https://github.com/aydindemir1/java-backend-spring-boot-spring-cloud.git}
-          default-label: ${CONFIG_REPO_LABEL:main}
-          search-paths:
-            - java-44-microservice-project/ConfigServerLocal/src/main/resources/config-repo
+          uri: ${REMOTE_CONFIG_PATH_PROJECT:https://github.com/aydindemir1/config-server-remote-microservice-project-2026.git}
+          default-label: main
+          username: ${REMOTE_USERNAME}
+          password: ${REMOTE_TOKEN_PASSWORD}

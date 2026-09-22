@@ -289,10 +289,17 @@ Port, datasource, JPA, Swagger, JWT ve servis URL ayarları merkezi config repos
 
 ### Remote Config Server
 
-`ConfigServerRemote`, Git backend kullanır. Varsayılan olarak bu repository'nin `main` branch'indeki Day 4 config klasörünü okur.
+`ConfigServerRemote`, Git backend kullanır ve servis konfigürasyonlarını ayrı bir **private** Git repository'den okur:
 
-- `CONFIG_REPO_URI` — Git repository URI
-- `CONFIG_REPO_LABEL` — branch/label, varsayılan `main`
+`aydindemir1/config-server-remote-microservice-project-2026`
+
+Gerekli environment variable'lar:
+
+- `REMOTE_CONFIG_PATH_PROJECT` — private config repository URI; varsayılan olarak yukarıdaki repository kullanılır
+- `REMOTE_USERNAME` — GitHub kullanıcı adı
+- `REMOTE_TOKEN_PASSWORD` — private repository için GitHub token/PAT
+
+Token veya parola kaynak koda yazılmaz.
 
 Remote Config Server portu `8889` olarak ayrılmıştır. Bir client'ı remote server ile çalıştırmak için:
 
@@ -315,7 +322,9 @@ kullanılabilir.
 
                      ConfigServerRemote :8889
                          Git backend
-                      (alternatif kaynak)
+                              |
+                              v
+        private config-server-remote-microservice-project-2026
 ```
 
 > Day 4 kapsamında Eureka, API Gateway ve load balancing henüz eklenmemiştir.
