@@ -328,3 +328,57 @@ kullanılabilir.
 ```
 
 > Day 4 kapsamında Eureka, API Gateway ve load balancing henüz eklenmemiştir.
+
+
+## Day 5A
+
+Beşinci günün ilk bölümünde mevcut Day 1-4 yapıları değiştirilmeden **API Gateway, routing, Circuit Breaker, fallback ve Actuator** eklendi.
+
+### Eklenen teknoloji ve pattern'ler
+
+- Spring Cloud Gateway Server Web MVC
+- API Gateway Pattern
+- Route / Predicate / Filter yapısı
+- Spring Cloud Circuit Breaker
+- Resilience4j
+- Fallback Pattern
+- Spring Boot Actuator
+- Merkezi Gateway config yönetimi
+
+### ApiGatewayService
+
+Gateway varsayılan olarak `8080` portunda çalışır ve config'ini Day 4'te oluşturulan ConfigServerRemote üzerinden alır:
+
+```text
+Client
+  |
+  v
+ApiGatewayService :8080
+  |
+  +--> /auth/**     -> AuthService :9090
+  +--> /user/**     -> UserProfileService :9091
+  +--> /agent/**    -> AgentService :9092
+  +--> /buyer/**    -> BuyerService :9093
+  +--> /property/** -> PropertyService :9094
+  +--> /seller/**   -> SellerService :9095
+```
+
+Her route bir Circuit Breaker ile sarılmıştır. Hedef servis erişilemez olduğunda Gateway kendi `/fallback/**` endpoint'ine forward eder.
+
+Gateway'in merkezi konfigürasyonu hem Local Config Server repository'sinde hem de ayrı private Remote Config repository'sinde `api-gateway-service.yml` olarak tutulur.
+
+### Day 5A test örnekleri
+
+```text
+GET http://localhost:8080/auth/hello
+GET http://localhost:8080/user/hello
+GET http://localhost:8080/agent/hello
+GET http://localhost:8080/buyer/hello
+GET http://localhost:8080/property/hello
+GET http://localhost:8080/seller/hello
+GET http://localhost:8080/actuator/health
+```
+
+Circuit Breaker / fallback testi için hedef servislerden biri kapatılıp ilgili Gateway route'u tekrar çağrılır.
+
+> Day 5B'de referanstaki tracing amacı, güncel Micrometer Tracing + Zipkin yaklaşımıyla ayrıca eklenecektir.
