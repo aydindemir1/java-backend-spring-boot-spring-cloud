@@ -21,15 +21,18 @@ public class AuthService extends ServiceManager<Auth, Long> {
     private final IAuthRepository authRepository;
     private final JwtTokenManager jwtTokenManager;
     private final IUserProfileManager userProfileManager;
+    private final IAuthMapper authMapper;
 
     public AuthService(
             IAuthRepository authRepository,
             JwtTokenManager jwtTokenManager,
-            IUserProfileManager userProfileManager) {
+            IUserProfileManager userProfileManager,
+            IAuthMapper authMapper) {
         super(authRepository);
         this.authRepository = authRepository;
         this.jwtTokenManager = jwtTokenManager;
         this.userProfileManager = userProfileManager;
+        this.authMapper = authMapper;
     }
 
     public DoRegisterResponseDto doRegister(DoRegisterRequestDto dto) {
@@ -41,13 +44,13 @@ public class AuthService extends ServiceManager<Auth, Long> {
             throw new AuthServiceException(ErrorType.REGISTER_USERNAME_EXISTS);
         }
 
-        Auth auth = IAuthMapper.INSTANCE.toAuth(dto);
+        Auth auth = authMapper.toAuth(dto);
         auth.setState(true);
         auth.setCreatedAt(System.currentTimeMillis());
 
         auth = save(auth);
 
-        userProfileManager.save(IAuthMapper.INSTANCE.fromAuth(auth));
+        userProfileManager.save(authMapper.fromAuth(auth));
 
         return DoRegisterResponseDto.builder()
                 .id(auth.getId())
