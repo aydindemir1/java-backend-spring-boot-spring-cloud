@@ -7,6 +7,7 @@ ext {
             postgreSql  : "42.7.8",
             swaggerApi  : "3.1.1",
             jwt         : "4.6.1"
+            lombokMapstructBinding : "0.2.0"
     ]
 
     libs = [
@@ -24,6 +25,8 @@ ext {
             mapStructProcessor     : "org.mapstruct:mapstruct-processor:$versions.mapStruct",
 
             swaggerApi             : "org.springdoc:springdoc-openapi-starter-webmvc-ui:$versions.swaggerApi",
-            jwt                    : "com.auth0:java-jwt:$versions.jwt"
+            jwt                    : "com.auth0:java-jwt:$versions.jwt",
+            lombokMapstructBinding : "org.projectlombok:lombok-mapstruct-binding:$versions.lombokMapstructBinding"
+                                     
     ]
 }
