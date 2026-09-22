@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: ${REMOTE_CONFIG_PATH_PROJECT:https://github.com/aydindemir1/config-server-remote-microservice-project-2026.git}
+          uri: ${REMOTE_CONFIG_PATH_PROJECT}
           default-label: main
           username: ${REMOTE_USERNAME}
           password: ${REMOTE_TOKEN_PASSWORD}
