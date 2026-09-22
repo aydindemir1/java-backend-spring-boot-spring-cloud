@@ -233,3 +233,89 @@ docker compose up -d
 ```
 
 > Day 3 kapsamında Eureka, Config Server ve API Gateway eklenmemiştir. Bu bileşenler sonraki günlerin kapsamındadır.
+
+
+## Day 4
+
+Dördüncü gün merkezi konfigürasyon yönetimi için **Spring Cloud Config** eklenmiştir. Day 1-3 servisleri korunmuş, servislerin çalışma ayarları Config Server üzerinden merkezi olarak yönetilecek hale getirilmiştir.
+
+### Eklenen modüller
+
+- `ConfigServerLocal` — native/classpath tabanlı Config Server, port `8888`
+- `ConfigServerRemote` — Git tabanlı Config Server, port `8889`
+
+### Local Config Server
+
+`ConfigServerLocal`, `native` profile ile kendi classpath'indeki `config-repo` klasöründen servis konfigürasyonlarını okur.
+
+```text
+ConfigServerLocal :8888
+        |
+        +-- auth-service.yml
+        +-- auth-service-dev.yml
+        +-- auth-service-test.yml
+        +-- user-profile-service.yml
+        +-- agent-service.yml
+        +-- buyer-service.yml
+        +-- property-service.yml
+        +-- seller-service.yml
+```
+
+Örnek Config Server sorguları:
+
+```text
+http://localhost:8888/auth-service/default
+http://localhost:8888/auth-service/dev
+http://localhost:8888/user-profile-service/default
+http://localhost:8888/agent-service/default
+```
+
+### Config Client
+
+Altı iş servisi artık yalnızca kendi application adını ve Config Server adresini lokal `application.yml` dosyasında tutar:
+
+```yaml
+spring:
+  application:
+    name: auth-service
+  config:
+    import: "configserver:"
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
+```
+
+Port, datasource, JPA, Swagger, JWT ve servis URL ayarları merkezi config repository'ye taşınmıştır.
+
+### Remote Config Server
+
+`ConfigServerRemote`, Git backend kullanır. Varsayılan olarak bu repository'nin `main` branch'indeki Day 4 config klasörünü okur.
+
+- `CONFIG_REPO_URI` — Git repository URI
+- `CONFIG_REPO_LABEL` — branch/label, varsayılan `main`
+
+Remote Config Server portu `8889` olarak ayrılmıştır. Bir client'ı remote server ile çalıştırmak için:
+
+```text
+CONFIG_SERVER_URL=http://localhost:8889
+```
+
+kullanılabilir.
+
+### Day 4 mimarisi
+
+```text
+                     ConfigServerLocal :8888
+                       native backend
+                             |
+        +---------+----------+----------+---------+----------+
+        |         |          |          |         |          |
+       Auth   UserProfile   Agent      Buyer   Property    Seller
+      :9090     :9091      :9092      :9093     :9094     :9095
+
+                     ConfigServerRemote :8889
+                         Git backend
+                      (alternatif kaynak)
+```
+
+> Day 4 kapsamında Eureka, API Gateway ve load balancing henüz eklenmemiştir.

@@ -1,0 +1,28 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    url: ${AUTH_DB_URL:jdbc:postgresql://localhost:5433/micro_auth_service_db}
+    username: ${AUTH_DB_USERNAME:aydin}
+    password: ${AUTH_DB_PASSWORD:123456!}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    show-sql: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+authservice:
+  secret:
+    key: ${AUTH_JWT_SECRET:java44-auth-service-secret-key}
+  issuer: ${AUTH_JWT_ISSUER:java-44-auth-service}
+  expire:
+    date: ${AUTH_JWT_EXPIRE_MS:300000}
+
+services:
+  user-profile:
+    url: ${USER_PROFILE_SERVICE_URL:http://localhost:9091}

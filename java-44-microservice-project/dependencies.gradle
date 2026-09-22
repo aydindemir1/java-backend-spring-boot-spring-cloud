@@ -1,32 +1,33 @@
 ext {
     versions = [
-            springBoot  : "4.1.1",
-            springCloud : "2025.1.3",
-            lombok      : "1.18.42",
-            mapStruct   : "1.6.3",
-            postgreSql  : "42.7.8",
-            swaggerApi  : "3.1.1",
-            jwt         : "4.6.1"
-            lombokMapstructBinding : "0.2.0"
+            springBoot               : "4.1.1",
+            springCloud              : "2025.1.3",
+            lombok                   : "1.18.42",
+            mapStruct                : "1.6.3",
+            postgreSql               : "42.7.8",
+            swaggerApi               : "3.1.1",
+            jwt                      : "4.6.1",
+            lombokMapstructBinding   : "0.2.0"
     ]
 
     libs = [
-            springBootWeb          : "org.springframework.boot:spring-boot-starter-webmvc:$versions.springBoot",
-            springBootDataJpa      : "org.springframework.boot:spring-boot-starter-data-jpa:$versions.springBoot",
-            springBootTest         : "org.springframework.boot:spring-boot-starter-test:$versions.springBoot",
-            junitPlatformLauncher  : "org.junit.platform:junit-platform-launcher",
+            springBootWeb            : "org.springframework.boot:spring-boot-starter-webmvc:$versions.springBoot",
+            springBootDataJpa        : "org.springframework.boot:spring-boot-starter-data-jpa:$versions.springBoot",
+            springBootTest           : "org.springframework.boot:spring-boot-starter-test:$versions.springBoot",
+            junitPlatformLauncher    : "org.junit.platform:junit-platform-launcher",
 
-            springCloudOpenFeign   : "org.springframework.cloud:spring-cloud-starter-openfeign",
+            springCloudOpenFeign     : "org.springframework.cloud:spring-cloud-starter-openfeign",
+            springCloudStarterConfig : "org.springframework.cloud:spring-cloud-starter-config",
+            springCloudConfigServer  : "org.springframework.cloud:spring-cloud-config-server",
 
-            postgreSql             : "org.postgresql:postgresql:$versions.postgreSql",
+            postgreSql               : "org.postgresql:postgresql:$versions.postgreSql",
 
-            lombok                 : "org.projectlombok:lombok:$versions.lombok",
-            mapStruct              : "org.mapstruct:mapstruct:$versions.mapStruct",
-            mapStructProcessor     : "org.mapstruct:mapstruct-processor:$versions.mapStruct",
+            lombok                   : "org.projectlombok:lombok:$versions.lombok",
+            lombokMapstructBinding   : "org.projectlombok:lombok-mapstruct-binding:$versions.lombokMapstructBinding",
+            mapStruct                : "org.mapstruct:mapstruct:$versions.mapStruct",
+            mapStructProcessor       : "org.mapstruct:mapstruct-processor:$versions.mapStruct",
 
-            swaggerApi             : "org.springdoc:springdoc-openapi-starter-webmvc-ui:$versions.swaggerApi",
-            jwt                    : "com.auth0:java-jwt:$versions.jwt",
-            lombokMapstructBinding : "org.projectlombok:lombok-mapstruct-binding:$versions.lombokMapstructBinding"
-                                     
+            swaggerApi               : "org.springdoc:springdoc-openapi-starter-webmvc-ui:$versions.swaggerApi",
+            jwt                      : "com.auth0:java-jwt:$versions.jwt"
     ]
 }

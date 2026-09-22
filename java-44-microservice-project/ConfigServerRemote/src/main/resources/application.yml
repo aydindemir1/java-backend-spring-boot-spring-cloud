@@ -1,0 +1,14 @@
+server:
+  port: 8889
+
+spring:
+  application:
+    name: config-server-remote
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${CONFIG_REPO_URI:https://github.com/aydindemir1/java-backend-spring-boot-spring-cloud.git}
+          default-label: ${CONFIG_REPO_LABEL:main}
+          search-paths:
+            - java-44-microservice-project/ConfigServerLocal/src/main/resources/config-repo

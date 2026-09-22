@@ -1,0 +1,17 @@
+server:
+  port: 9091
+
+spring:
+  datasource:
+    url: ${USER_PROFILE_DB_URL:jdbc:postgresql://localhost:5434/micro_user_profile_service_db}
+    username: ${USER_PROFILE_DB_USERNAME:aydin}
+    password: ${USER_PROFILE_DB_PASSWORD:123456!}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    show-sql: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
