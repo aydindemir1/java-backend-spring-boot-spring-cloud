@@ -3,12 +3,10 @@ package com.aydindemir.mapper;
 import com.aydindemir.dto.request.UserProfileSaveRequestDto;
 import com.aydindemir.model.UserProfile;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.MappingConstants;
 
-@Mapper
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface IUserProfileMapper {
-
-    IUserProfileMapper INSTANCE = Mappers.getMapper(IUserProfileMapper.class);
 
     UserProfile toUserProfile(UserProfileSaveRequestDto dto);
 }
