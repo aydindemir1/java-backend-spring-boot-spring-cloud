@@ -1,6 +1,7 @@
 dependencies {
     implementation libs.springBootDataJpa
     implementation libs.springCloudStarterConfig
+    implementation libs.springBootActuator
     implementation libs.springBootZipkin
     implementation libs.feignMicrometer
     runtimeOnly libs.postgreSql
