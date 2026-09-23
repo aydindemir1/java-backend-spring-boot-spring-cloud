@@ -381,4 +381,134 @@ GET http://localhost:8080/actuator/health
 
 Circuit Breaker / fallback testi için hedef servislerden biri kapatılıp ilgili Gateway route'u tekrar çağrılır.
 
-> Day 5B'de referanstaki tracing amacı, güncel Micrometer Tracing + Zipkin yaklaşımıyla ayrıca eklenecektir.
+## Day 5B
+
+Beşinci günün ikinci bölümünde mevcut Day 1-5A yapıları korunarak **distributed tracing** eklendi. Referans eğitim projesindeki eski Sleuth tabanlı yaklaşım birebir kopyalanmadı; Spring Boot 4.1.1 ile uyumlu modern tracing altyapısı kullanıldı.
+
+### Eklenen teknoloji ve konular
+
+- Micrometer Tracing
+- OpenZipkin Brave
+- Zipkin
+- Spring Boot Actuator tracing altyapısı
+- HTTP trace context propagation
+- Spring Cloud OpenFeign çağrılarında trace propagation
+- Merkezi tracing configuration
+- Docker ile Zipkin çalıştırma
+- Zipkin UI üzerinden distributed trace inceleme
+
+### Tracing mimarisi
+
+```text
+Postman / Client
+       |
+       v
+ApiGatewayService :8080
+       |
+       v
+AuthService :9090
+       |
+       | Spring Cloud OpenFeign
+       v
+UserProfileService :9091
+       |
+       +--------------------+
+                            |
+                            v
+                       Zipkin :9411
+```
+
+Gateway ve iş servisleri aynı distributed trace içinde izlenebilir. Özellikle `POST /auth/register` akışında Gateway -> AuthService -> OpenFeign -> UserProfileService zincirinin tek trace altında görünmesi hedeflenir.
+
+### Dependency yaklaşımı
+
+Spring Cloud Sleuth kullanılmamıştır. Tracing için Spring Boot 4.1.1 ile uyumlu Zipkin starter'ı kullanılmıştır:
+
+```gradle
+implementation "org.springframework.boot:spring-boot-starter-zipkin"
+```
+
+AuthService'teki OpenFeign çağrılarının observation/tracing entegrasyonu için ayrıca:
+
+```gradle
+implementation "io.github.openfeign:feign-micrometer"
+```
+
+eklenmiştir.
+
+Tracing desteği şu uygulama servislerinde etkinleştirilmiştir:
+
+```text
+ApiGatewayService
+AuthService
+UserProfileService
+AgentService
+BuyerService
+PropertyService
+SellerService
+```
+
+Config Server modülleri bu aşamada tracing kapsamına alınmamıştır.
+
+### Merkezi tracing configuration
+
+Local Config Server içinde ortak `application.yml` oluşturulmuştur. Aynı ortak configuration Remote Config repository'sinde de tutulur.
+
+```yaml
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    export:
+      zipkin:
+        endpoint: http://localhost:9411/api/v2/spans
+```
+
+Eğitim ve lokal test ortamında tüm isteklerin trace edilmesini kolaylaştırmak için sampling değeri `1.0` olarak ayarlanmıştır.
+
+### Zipkin Docker
+
+Proje köküne `docker-compose-zipkin.yml` eklenmiştir.
+
+Zipkin'i başlatmak için:
+
+```bash
+docker compose -f docker-compose-zipkin.yml up -d
+```
+
+Zipkin UI:
+
+```text
+http://localhost:9411
+```
+
+### Day 5B test senaryosu
+
+Temel distributed tracing testi:
+
+```text
+POST http://localhost:8080/auth/register
+        |
+        v
+ApiGatewayService
+        |
+        v
+AuthService
+        |
+        | OpenFeign
+        v
+UserProfileService
+```
+
+Başarılı testte Zipkin UI üzerinde aynı trace içinde Gateway, AuthService ve UserProfileService span'leri görülmelidir.
+
+Ayrıca aşağıdaki Gateway çağrılarıyla bağımsız servis trace'leri doğrulanabilir:
+
+```text
+GET http://localhost:8080/agent/hello
+GET http://localhost:8080/buyer/hello
+GET http://localhost:8080/property/hello
+GET http://localhost:8080/seller/hello
+```
+
+Day 5B yalnızca tracing kapsamındadır; Prometheus, Grafana, Loki, Tempo ve daha geniş observability stack'i sonraki ileri seviye çalışmalar için ayrılmıştır.

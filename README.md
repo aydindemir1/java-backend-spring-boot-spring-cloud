@@ -38,6 +38,9 @@ Bu repository, **Core Java temellerinden modern Spring Boot ve Spring Cloud taba
 * Swagger / OpenAPI
 * SpringDoc OpenAPI
 * Spring Boot Actuator
+* Micrometer Tracing
+* OpenZipkin Brave
+* Zipkin
 * MapStruct
 * Lombok
 * SLF4J
@@ -133,7 +136,9 @@ Projede şu anda:
 - servis konfigürasyonlarının merkezi yönetimi için **Config Client**,
 - edge routing için **Spring Cloud Gateway Server Web MVC**,
 - servis arızalarında kontrollü fallback için **Spring Cloud Circuit Breaker + Resilience4j**,
-- health/operasyonel endpoint'ler için **Spring Boot Actuator**
+- health/operasyonel endpoint'ler için **Spring Boot Actuator**,
+- dağıtık isteklerin servisler arasında izlenmesi için **Micrometer Tracing + Brave + Zipkin**,
+- `AuthService -> UserProfileService` OpenFeign çağrısında trace context propagation
 
 uygulanmıştır.
 
@@ -196,6 +201,11 @@ Microservice çalışmalarında bu yapı servis sınırları içinde korunurken;
 * Route / Predicate / Filter yapısı
 * Circuit Breaker ve Fallback Pattern
 * Resilience4j
+* Distributed Tracing
+* Micrometer Tracing
+* Brave
+* Zipkin
+* HTTP / OpenFeign Trace Context Propagation
 * Unit Test
 * Web MVC Test
 * Repository Test
