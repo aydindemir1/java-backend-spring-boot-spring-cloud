@@ -7,65 +7,48 @@ spring:
       server:
         webmvc:
           routes:
+
             - id: auth-service
               uri: http://localhost:9090
               predicates:
                 - Path=/auth/**
               filters:
-                - name: CircuitBreaker
-                  args:
-                    name: authServiceCircuitBreaker
-                    fallbackUri: forward:/fallback/auth
+                - CircuitBreaker=authServiceCircuitBreaker,forward:/fallback/auth
 
             - id: user-profile-service
               uri: http://localhost:9091
               predicates:
                 - Path=/user/**
               filters:
-                - name: CircuitBreaker
-                  args:
-                    name: userProfileServiceCircuitBreaker
-                    fallbackUri: forward:/fallback/user
+                - CircuitBreaker=userProfileServiceCircuitBreaker,forward:/fallback/user
 
             - id: agent-service
               uri: http://localhost:9092
               predicates:
                 - Path=/agent/**
               filters:
-                - name: CircuitBreaker
-                  args:
-                    name: agentServiceCircuitBreaker
-                    fallbackUri: forward:/fallback/agent
+                - CircuitBreaker=agentServiceCircuitBreaker,forward:/fallback/agent
 
             - id: buyer-service
               uri: http://localhost:9093
               predicates:
                 - Path=/buyer/**
               filters:
-                - name: CircuitBreaker
-                  args:
-                    name: buyerServiceCircuitBreaker
-                    fallbackUri: forward:/fallback/buyer
+                - CircuitBreaker=buyerServiceCircuitBreaker,forward:/fallback/buyer
 
             - id: property-service
               uri: http://localhost:9094
               predicates:
                 - Path=/property/**
               filters:
-                - name: CircuitBreaker
-                  args:
-                    name: propertyServiceCircuitBreaker
-                    fallbackUri: forward:/fallback/property
+                - CircuitBreaker=propertyServiceCircuitBreaker,forward:/fallback/property
 
             - id: seller-service
               uri: http://localhost:9095
               predicates:
                 - Path=/seller/**
               filters:
-                - name: CircuitBreaker
-                  args:
-                    name: sellerServiceCircuitBreaker
-                    fallbackUri: forward:/fallback/seller
+                - CircuitBreaker=sellerServiceCircuitBreaker,forward:/fallback/seller
 
 management:
   endpoints:
