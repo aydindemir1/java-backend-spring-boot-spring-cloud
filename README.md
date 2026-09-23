@@ -1,8 +1,8 @@
 # Java Backend Geliştirme
 
-Bu repository, temel Java konularından başlayarak Spring Boot tabanlı backend geliştirme, veritabanı erişimi, REST API geliştirme ve test süreçlerine kadar ilerleyen uygulamalı örnek projeleri içerir.
+Bu repository, **Core Java temellerinden modern Spring Boot ve Spring Cloud tabanlı backend/microservice geliştirmeye** adım adım ilerleyen uygulamalı eğitim projelerini içerir.
 
-Repository içerisinde Java, nesne yönelimli programlama, koleksiyonlar, Stream API, exception handling, concurrency, SQL/RDBMS, JDBC, JPA/Hibernate, Spring Boot, MongoDB, Docker ve test konularına yönelik çalışmalar bulunmaktadır.
+Çalışmalar; Java ve OOP temelleri, Collections/Stream API, concurrency, SQL/RDBMS, JDBC, JPA/Hibernate, REST API, Spring Boot, Spring Security, Redis, MongoDB, test otomasyonu, Docker ve çok servisli Spring Cloud uygulamalarına kadar genişleyen bir öğrenme yolunu takip eder. Repository aynı zamanda ileri seviye backend, dağıtık sistemler, DevOps/platform ve software architecture çalışmalarına temel oluşturacak şekilde geliştirilmektedir.
 
 ## Kullanılan Teknolojiler
 
@@ -15,6 +15,10 @@ Repository içerisinde Java, nesne yönelimli programlama, koleksiyonlar, Stream
 * Spring Boot
 * Spring Cloud
 * Spring Cloud OpenFeign
+* Spring Cloud Config
+* Spring Cloud Gateway
+* Spring Cloud Circuit Breaker
+* Resilience4j
 * Spring Security
 * Spring Web
 * Spring Data JPA
@@ -32,17 +36,22 @@ Repository içerisinde Java, nesne yönelimli programlama, koleksiyonlar, Stream
 * MongoDB
 * Jakarta Validation
 * Swagger / OpenAPI
+* SpringDoc OpenAPI
 * Spring Boot Actuator
+* MapStruct
+* Lombok
 * SLF4J
 * Logback
 * Docker
 * Docker Compose
+* Docker Hub
 * RedisInsight
 * JUnit 5
 * Mockito
 * MockMvc
 * AssertJ
 * Testcontainers
+* Gradle Multi-Project
 * React
 * Angular
 * Vue
@@ -115,9 +124,24 @@ Java 21 ve Spring Boot 4.1.1 ile hazırlanmış temel bir multi-module microserv
 
 `java-44-microservice-project`
 
-Adım adım geliştirilen çok modüllü Spring Boot microservice projesidir. AuthService ile başlayan yapı; JWT tabanlı authentication, merkezi exception handling, PostgreSQL, Docker Compose ve MapStruct altyapısından sonra UserProfileService, AgentService, BuyerService, PropertyService ve SellerService ile genişletilmiştir. Spring Cloud OpenFeign kullanılarak `AuthService -> UserProfileService` senkron servisler arası iletişim akışı kurulmuştur. Proje ilerleyen günlerde Config Server, API Gateway ve service discovery bileşenleriyle genişletilecektir.
+Adım adım geliştirilen çok modüllü Spring Boot + Spring Cloud microservice projesidir. AuthService ile başlayan yapı; JWT tabanlı authentication, merkezi exception handling, PostgreSQL, Docker Compose, MapStruct ve Spring Cloud OpenFeign altyapısından sonra UserProfileService, AgentService, BuyerService, PropertyService ve SellerService ile genişletilmiştir.
+
+Projede şu anda:
+
+- `AuthService -> UserProfileService` senkron iletişimi için **Spring Cloud OpenFeign**,
+- native/classpath ve private Git backend seçenekleriyle **Spring Cloud Config Server**,
+- servis konfigürasyonlarının merkezi yönetimi için **Config Client**,
+- edge routing için **Spring Cloud Gateway Server Web MVC**,
+- servis arızalarında kontrollü fallback için **Spring Cloud Circuit Breaker + Resilience4j**,
+- health/operasyonel endpoint'ler için **Spring Boot Actuator**
+
+uygulanmıştır.
+
+Service Discovery/Eureka ve sonraki Spring Cloud bileşenleri projenin ilerleyen adımlarında eklenecektir.
 
 ## Backend Mimarisi
+
+Repository'deki temel Spring Boot projelerinde aşağıdaki katmanlı yapı ağırlıklı olarak kullanılmaktadır:
 
 ```text
 Controller
@@ -130,6 +154,8 @@ JPA / Hibernate / Spring Data MongoDB
    ↓
 Database
 ```
+
+Microservice çalışmalarında bu yapı servis sınırları içinde korunurken; servisler arası iletişim, centralized configuration, API Gateway ve resilience gibi dağıtık sistem sorumlulukları Spring Cloud bileşenleriyle ayrıca ele alınmaktadır.
 
 ## Ana Konular
 
@@ -164,6 +190,12 @@ Database
 * Multi-module Gradle projeleri
 * Microservice mimarisi temelleri
 * Spring Cloud OpenFeign ile servisler arası iletişim
+* Spring Cloud Config ile merkezi konfigürasyon
+* Native ve Git tabanlı Config Server
+* API Gateway Pattern ve Spring Cloud Gateway
+* Route / Predicate / Filter yapısı
+* Circuit Breaker ve Fallback Pattern
+* Resilience4j
 * Unit Test
 * Web MVC Test
 * Repository Test
@@ -173,13 +205,16 @@ Database
 
 ## Amaç
 
-Bu repository'nin amacı, Java'nın temel konularından başlayarak modern backend geliştirme süreçlerine adım adım ilerlemek ve Spring Boot ekosistemini uygulamalı örneklerle öğrenmektir.
+Bu repository'nin amacı, Java'nın temel konularından başlayarak modern backend geliştirme süreçlerine adım adım ilerlemek; Spring Boot, Spring Security, Spring Cloud, veri teknolojileri, test, container ve dağıtık sistem konularını uygulamalı projelerle öğrenmektir.
 
-Repository ilerleyen aşamalarda ileri seviye backend, veritabanı, test, Spring Cloud ve dağıtık sistem konuları ile genişletilecektir.
+Repository yalnızca örnek kod arşivi olarak değil, **temel → intermediate → advanced → senior seviye backend/platform/software architecture öğrenme yolunun yaşayan çalışma alanı** olarak geliştirilmektedir. İleri aşamalarda distributed systems, database internals, Kubernetes/platform engineering, security, observability, performance ve production-oriented architecture konularında derinleşme hedeflenmektedir.
 
 
 ## Gelişim Yol Haritası
 
 Repository için hazırlanan **384 projelik Java Spring Boot + DevOps/Platform/SRE + Software Architecture master roadmap** ayrı bir dokümanda tutulmaktadır.
 
-➡️ [Master Roadmap](ROADMAP.md)
+- ➡️ [Master Roadmap — proje ve öğrenme sırası](ROADMAP.md)
+- ➡️ [Roadmap Ana Konular Envanteri — mimari, pattern, teknoloji ve mühendislik konuları](ROADMAP-TOPICS.md)
+
+Roadmap; mevcut temel projeleri gereksiz yere tekrar etmek yerine, bunların **internals, production failure, HA, performance, security, observability, operations ve architecture trade-off** seviyesindeki ileri devamlarına odaklanır.
