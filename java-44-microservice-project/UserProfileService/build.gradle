@@ -1,5 +1,6 @@
 dependencies {
     implementation libs.springBootDataJpa
     implementation libs.springCloudStarterConfig
+    implementation libs.springBootZipkin
     runtimeOnly libs.postgreSql
 }

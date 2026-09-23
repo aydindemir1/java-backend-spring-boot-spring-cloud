@@ -3,4 +3,5 @@ dependencies {
     implementation libs.springCloudGatewayServerWebMvc
     implementation libs.springCloudCircuitBreakerReactorResilience4j
     implementation libs.springBootActuator
+    implementation libs.springBootZipkin
 }
