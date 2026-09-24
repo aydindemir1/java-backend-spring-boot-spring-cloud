@@ -138,7 +138,8 @@ Projede şu anda:
 - servis arızalarında kontrollü fallback için **Spring Cloud Circuit Breaker + Resilience4j**,
 - health/operasyonel endpoint'ler için **Spring Boot Actuator**,
 - dağıtık isteklerin servisler arasında izlenmesi için **Micrometer Tracing + Brave + Zipkin**,
-- `AuthService -> UserProfileService` OpenFeign çağrısında trace context propagation
+- `AuthService -> UserProfileService` OpenFeign çağrısında trace context propagation,
+- Local (`:8888`) ve Remote (`:8889`) Config Server modlarında doğrulanmış distributed tracing akışı
 
 uygulanmıştır.
 

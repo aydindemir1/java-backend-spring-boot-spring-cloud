@@ -370,7 +370,7 @@ Gateway'in merkezi konfigürasyonu hem Local Config Server repository'sinde hem 
 ### Day 5A test örnekleri
 
 ```text
-GET http://localhost:8080/auth/hello
+GET http://localhost:8080/auth/getMessage
 GET http://localhost:8080/user/hello
 GET http://localhost:8080/agent/hello
 GET http://localhost:8080/buyer/hello
@@ -418,7 +418,7 @@ UserProfileService :9091
                        Zipkin :9411
 ```
 
-Gateway ve iş servisleri aynı distributed trace içinde izlenebilir. Özellikle `POST /auth/register` akışında Gateway -> AuthService -> OpenFeign -> UserProfileService zincirinin tek trace altında görünmesi hedeflenir.
+Gateway ve iş servisleri aynı distributed trace içinde izlenebilir. `POST /auth/register` akışı hem **Remote Config Server (`:8889`)** hem de **Local Config Server (`:8888`)** ile test edilmiştir. Gateway -> AuthService -> OpenFeign -> UserProfileService zincirinin tek trace altında oluştuğu Zipkin UI ve Zipkin API üzerinden doğrulanmıştır.
 
 ### Dependency yaklaşımı
 
@@ -500,7 +500,7 @@ AuthService
 UserProfileService
 ```
 
-Başarılı testte Zipkin UI üzerinde aynı trace içinde Gateway, AuthService ve UserProfileService span'leri görülmelidir.
+Başarılı testlerde Zipkin UI üzerinde aynı trace içinde Gateway, AuthService ve UserProfileService span'leri görülmüştür. Gateway server/client span'leri, Circuit Breaker span'i, AuthService server span'i, OpenFeign client span'i ve UserProfileService server span'i aynı `traceId` altında doğrulanmıştır.
 
 Ayrıca aşağıdaki Gateway çağrılarıyla bağımsız servis trace'leri doğrulanabilir:
 
@@ -510,5 +510,18 @@ GET http://localhost:8080/buyer/hello
 GET http://localhost:8080/property/hello
 GET http://localhost:8080/seller/hello
 ```
+
+### Day 5B doğrulama sonucu
+
+- Remote Config Server ile tracing config merge edildi ve servislerde çalıştı.
+- Local Config Server ile aynı tracing config doğrulandı.
+- Gateway route istekleri Zipkin'e ulaştı.
+- `POST /auth/register` zinciri `ApiGatewayService -> AuthService -> UserProfileService` olarak tek distributed trace içinde görüldü.
+- OpenFeign çağrısında trace context propagation doğrulandı.
+- Zipkin `Dependencies` görünümünde servis ilişkileri oluştu.
+- Circuit Breaker ve fallback akışları trace içinde görünür hale geldi.
+- POST isteklerinde fallback handler method uyumsuzluğu giderildi; fallback endpoint'leri HTTP method bağımsız çalışacak şekilde düzenlendi.
+
+**Day 5B tamamlandı ve hem Local hem Remote Config Server ile test edildi.**
 
 Day 5B yalnızca tracing kapsamındadır; Prometheus, Grafana, Loki, Tempo ve daha geniş observability stack'i sonraki ileri seviye çalışmalar için ayrılmıştır.
