@@ -19,6 +19,7 @@ Bu repository, **Core Java temellerinden modern Spring Boot ve Spring Cloud taba
 * Spring Cloud Gateway
 * Spring Cloud Circuit Breaker
 * Spring Cloud Netflix Eureka
+* Spring Cloud LoadBalancer
 * Resilience4j
 * Spring Security
 * Spring Web
@@ -145,11 +146,12 @@ Projede şu anda:
 - Local (`:8888`) ve Remote (`:8889`) Config Server modlarında doğrulanmış distributed tracing akışı,
 - **RabbitMQ + Spring AMQP** ile `AuthService -> UserProfileService` asenkron mesajlaşma akışı,
 - RabbitMQ producer/consumer tarafında **Micrometer Observation + Zipkin trace context propagation**,
-- **Spring Cloud Netflix Eureka** ile service registry, service registration ve service discovery altyapısı
+- **Spring Cloud Netflix Eureka** ile service registry, service registration ve service discovery altyapısı,
+- **Spring Cloud LoadBalancer** ile Gateway ve OpenFeign tarafında service-name tabanlı load balancing
 
 uygulanmıştır.
 
-Spring Cloud LoadBalancer ve sonraki Spring Cloud bileşenleri projenin ilerleyen adımlarında eklenecektir.
+Sonraki Spring Cloud bileşenleri projenin ilerleyen adımlarında eklenecektir.
 
 ## Backend Mimarisi
 
@@ -222,6 +224,9 @@ Microservice çalışmalarında bu yapı servis sınırları içinde korunurken;
 * Spring Cloud Netflix Eureka
 * Eureka Server ve Eureka Client
 * Service Registration / Heartbeat / Lease Renewal
+* Spring Cloud LoadBalancer ile client-side load balancing
+* Gateway lb://service-name routing
+* OpenFeign service-name resolution
 * Unit Test
 * Web MVC Test
 * Repository Test
