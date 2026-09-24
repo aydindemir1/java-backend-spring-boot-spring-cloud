@@ -525,3 +525,156 @@ GET http://localhost:8080/seller/hello
 **Day 5B tamamlandı ve hem Local hem Remote Config Server ile test edildi.**
 
 Day 5B yalnızca tracing kapsamındadır; Prometheus, Grafana, Loki, Tempo ve daha geniş observability stack'i sonraki ileri seviye çalışmalar için ayrılmıştır.
+
+
+## Day 6A
+
+Altıncı günün ilk bölümünde mevcut senkron OpenFeign akışı korunarak **RabbitMQ + Spring AMQP** ile ayrı bir asenkron servisler arası iletişim senaryosu eklendi.
+
+### Eklenen teknoloji ve konular
+
+- RabbitMQ 4.3.6 Management
+- Spring AMQP
+- Spring Boot AMQP starter
+- Direct Exchange
+- Queue
+- Routing Key
+- `RabbitTemplate`
+- `@RabbitListener`
+- JSON message conversion
+- Asenkron producer / consumer iletişimi
+- RabbitMQ Management UI
+- Micrometer Observation ile RabbitMQ tracing
+- Zipkin üzerinde producer / consumer trace propagation
+
+### Mevcut senkron akış korunur
+
+Day 3'te oluşturulan OpenFeign tabanlı kayıt akışı değiştirilmemiştir:
+
+```text
+POST /auth/register
+        |
+        v
+AuthService
+        |
+        | Spring Cloud OpenFeign
+        v
+UserProfileService
+```
+
+### Yeni asenkron kayıt akışı
+
+RabbitMQ öğrenme amacıyla ayrı bir endpoint eklenmiştir:
+
+```text
+POST /auth/register-async
+        |
+        v
+AuthService
+        |
+        | RabbitTemplate
+        v
+java44.auth.exchange
+        |
+        | routing key: user-profile.create
+        v
+java44.user-profile.create.queue
+        |
+        | @RabbitListener
+        v
+UserProfileService
+        |
+        v
+PostgreSQL
+```
+
+Async endpoint başarılı publish sonrası `202 Accepted` döner.
+
+### RabbitMQ Docker
+
+RabbitMQ, Docker Compose ile çalıştırılır:
+
+```bash
+docker compose up -d rabbitmq
+```
+
+Portlar:
+
+```text
+AMQP       : 5672
+Management : 15672
+```
+
+Management UI:
+
+```text
+http://localhost:15672
+```
+
+Lokal eğitim ortamındaki varsayılan kullanıcı:
+
+```text
+java44 / java44
+```
+
+### Messaging topology
+
+```text
+Exchange    java44.auth.exchange
+Queue       java44.user-profile.create.queue
+Routing Key user-profile.create
+```
+
+Exchange ve queue durable olarak tanımlanmıştır.
+
+### Merkezi RabbitMQ configuration
+
+RabbitMQ bağlantı bilgileri hem Local Config Server hem de Remote Config repository üzerinden yönetilir:
+
+```yaml
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:java44}
+    password: ${RABBITMQ_PASSWORD:java44}
+    template:
+      observation-enabled: true
+    listener:
+      simple:
+        observation-enabled: true
+```
+
+### RabbitMQ distributed tracing
+
+RabbitMQ producer ve consumer observation desteği etkinleştirilmiştir. `POST /auth/register-async` testi Zipkin üzerinde aynı trace içerisinde doğrulanmıştır:
+
+```text
+auth-service: http post /auth/register-async
+        |
+        v
+auth-service: java44.auth.exchange/user-profile.create send
+        |
+        v
+user-profile-service: java44.user-profile.create.queue receive
+```
+
+Bu test ile HTTP request'ten başlayan trace context'in RabbitMQ message header'ları üzerinden producer'dan consumer'a taşındığı doğrulanmıştır.
+
+### Day 6A doğrulama sonucu
+
+- RabbitMQ container çalışıyor ve health check başarılı.
+- RabbitMQ Management UI erişilebilir.
+- AuthService ve UserProfileService AMQP bağlantıları başarılı.
+- Exchange, queue ve routing key oluşturuldu.
+- `POST /auth/register-async` başarılı çalıştı.
+- Auth veritabanında kullanıcı kaydı oluştu.
+- UserProfile veritabanında consumer tarafından profil kaydı oluşturuldu.
+- Mesaj consumer tarafından tüketilip acknowledge edildi.
+- RabbitMQ producer span'i Zipkin'de görüldü.
+- RabbitMQ consumer span'i Zipkin'de görüldü.
+- HTTP -> RabbitMQ producer -> RabbitMQ consumer zinciri aynı trace altında doğrulandı.
+
+**Day 6A — RabbitMQ + Spring AMQP tamamlandı ve test edildi.**
+
+Day 6'nın sonraki adımlarında **Spring Cloud Netflix Eureka** ve ardından **Spring Cloud LoadBalancer** ile service discovery + load balancing uygulanacaktır.

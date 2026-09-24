@@ -41,6 +41,8 @@ Bu repository, **Core Java temellerinden modern Spring Boot ve Spring Cloud taba
 * Micrometer Tracing
 * OpenZipkin Brave
 * Zipkin
+* RabbitMQ
+* Spring AMQP
 * MapStruct
 * Lombok
 * SLF4J
@@ -139,7 +141,9 @@ Projede şu anda:
 - health/operasyonel endpoint'ler için **Spring Boot Actuator**,
 - dağıtık isteklerin servisler arasında izlenmesi için **Micrometer Tracing + Brave + Zipkin**,
 - `AuthService -> UserProfileService` OpenFeign çağrısında trace context propagation,
-- Local (`:8888`) ve Remote (`:8889`) Config Server modlarında doğrulanmış distributed tracing akışı
+- Local (`:8888`) ve Remote (`:8889`) Config Server modlarında doğrulanmış distributed tracing akışı,
+- **RabbitMQ + Spring AMQP** ile `AuthService -> UserProfileService` asenkron mesajlaşma akışı,
+- RabbitMQ producer/consumer tarafında **Micrometer Observation + Zipkin trace context propagation**
 
 uygulanmıştır.
 
@@ -207,6 +211,11 @@ Microservice çalışmalarında bu yapı servis sınırları içinde korunurken;
 * Brave
 * Zipkin
 * HTTP / OpenFeign Trace Context Propagation
+* RabbitMQ / Spring AMQP
+* Asenkron servisler arası mesajlaşma
+* Exchange / Queue / Routing Key
+* RabbitTemplate ve @RabbitListener
+* RabbitMQ Producer / Consumer Trace Context Propagation
 * Unit Test
 * Web MVC Test
 * Repository Test
