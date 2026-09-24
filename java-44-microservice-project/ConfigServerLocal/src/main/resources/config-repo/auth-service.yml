@@ -6,6 +6,12 @@ spring:
     url: ${AUTH_DB_URL:jdbc:postgresql://localhost:5433/micro_auth_service_db}
     username: ${AUTH_DB_USERNAME:aydin}
     password: ${AUTH_DB_PASSWORD:123456!}
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:java44}
+    password: ${RABBITMQ_PASSWORD:java44}
+
   jpa:
     hibernate:
       ddl-auto: update

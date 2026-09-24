@@ -4,5 +4,6 @@ dependencies {
     implementation libs.springBootActuator
     implementation libs.springBootZipkin
     implementation libs.feignMicrometer
+    implementation libs.springBootAmqp
     runtimeOnly libs.postgreSql
 }

@@ -3,5 +3,6 @@ dependencies {
     implementation libs.springCloudStarterConfig
     implementation libs.springBootActuator
     implementation libs.springBootZipkin
+    implementation libs.springBootAmqp
     runtimeOnly libs.postgreSql
 }
