@@ -1,4 +1,5 @@
 dependencies {
+    implementation libs.springCloudEurekaClient
     implementation libs.springCloudStarterConfig
     implementation libs.springCloudGatewayServerWebMvc
     implementation libs.springCloudCircuitBreakerReactorResilience4j
