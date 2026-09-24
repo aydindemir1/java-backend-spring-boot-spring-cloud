@@ -11,6 +11,11 @@ spring:
     port: ${RABBITMQ_PORT:5672}
     username: ${RABBITMQ_USERNAME:java44}
     password: ${RABBITMQ_PASSWORD:java44}
+    template:
+      observation-enabled: true
+    listener:
+      simple:
+        observation-enabled: true
 
   jpa:
     hibernate:
