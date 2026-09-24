@@ -1,7 +1,6 @@
 package com.aydindemir.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,32 +8,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/fallback")
 public class ApiGatewayFallbackController {
 
-    @GetMapping("/auth")
+    @RequestMapping("/auth")
     public ResponseEntity<String> authFallback() {
         return ResponseEntity.ok("AuthService geçici olarak hizmet veremiyor.");
     }
 
-    @GetMapping("/user")
+    @RequestMapping("/user")
     public ResponseEntity<String> userProfileFallback() {
         return ResponseEntity.ok("UserProfileService geçici olarak hizmet veremiyor.");
     }
 
-    @GetMapping("/agent")
+    @RequestMapping("/agent")
     public ResponseEntity<String> agentFallback() {
         return ResponseEntity.ok("AgentService geçici olarak hizmet veremiyor.");
     }
 
-    @GetMapping("/buyer")
+    @RequestMapping("/buyer")
     public ResponseEntity<String> buyerFallback() {
         return ResponseEntity.ok("BuyerService geçici olarak hizmet veremiyor.");
     }
 
-    @GetMapping("/property")
+    @RequestMapping("/property")
     public ResponseEntity<String> propertyFallback() {
         return ResponseEntity.ok("PropertyService geçici olarak hizmet veremiyor.");
     }
 
-    @GetMapping("/seller")
+    @RequestMapping("/seller")
     public ResponseEntity<String> sellerFallback() {
         return ResponseEntity.ok("SellerService geçici olarak hizmet veremiyor.");
     }
