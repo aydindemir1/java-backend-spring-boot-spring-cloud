@@ -678,3 +678,121 @@ Bu test ile HTTP request'ten başlayan trace context'in RabbitMQ message header'
 **Day 6A — RabbitMQ + Spring AMQP tamamlandı ve test edildi.**
 
 Day 6'nın sonraki adımlarında **Spring Cloud Netflix Eureka** ve ardından **Spring Cloud LoadBalancer** ile service discovery + load balancing uygulanacaktır.
+
+
+## Day 6B
+
+Altıncı günün ikinci bölümünde **Spring Cloud Netflix Eureka** ile service registry ve service discovery altyapısı eklendi.
+
+### Eklenen teknoloji ve konular
+
+- Spring Cloud Netflix Eureka Server
+- Spring Cloud Netflix Eureka Client
+- Service Registry
+- Service Registration
+- Service Discovery altyapısı
+- Eureka Dashboard
+- Heartbeat / Lease Renewal
+- Merkezi Eureka configuration
+
+### Eureka Server
+
+Yeni bir `EurekaServer` modülü eklendi ve varsayılan olarak `8761` portunda çalışacak şekilde yapılandırıldı.
+
+```java
+@EnableEurekaServer
+@SpringBootApplication
+public class EurekaServerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaServerApplication.class, args);
+    }
+}
+```
+
+Eureka Server kendi config'ini mevcut Spring Cloud Config altyapısından alır.
+
+```text
+EurekaServer :8761
+        |
+        +--> ConfigServerLocal  :8888
+        |
+        +--> ConfigServerRemote :8889
+```
+
+Server kendi Eureka registry'sine client olarak kayıt olmaz ve registry fetch etmez:
+
+```yaml
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+```
+
+### Eureka Client servisleri
+
+Aşağıdaki servisler Eureka Client olarak registry'ye kaydolur:
+
+```text
+ApiGatewayService
+AuthService
+UserProfileService
+AgentService
+BuyerService
+PropertyService
+SellerService
+```
+
+Ortak Eureka client ayarı Local ve Remote Config üzerinden merkezi yönetilir:
+
+```yaml
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+```
+
+Servis kimlikleri mevcut `spring.application.name` değerlerinden gelir.
+
+### Doğrulanan registry
+
+Eureka Dashboard üzerinde aşağıdaki servislerin tamamı `UP (1)` olarak doğrulandı:
+
+```text
+AGENT-SERVICE
+API-GATEWAY-SERVICE
+AUTH-SERVICE
+BUYER-SERVICE
+PROPERTY-SERVICE
+SELLER-SERVICE
+USER-PROFILE-SERVICE
+```
+
+Bu test ile servislerin Eureka Server'a register olduğu ve registry heartbeat / lease renewal mekanizmasının çalıştığı doğrulanmıştır.
+
+### Day 6B sınırı
+
+Bu aşamada mevcut Gateway route'ları ve OpenFeign client henüz service-name tabanlı hale getirilmemiştir. Mevcut sabit URL yaklaşımı korunmuştur:
+
+```text
+Gateway -> http://localhost:909x
+Feign   -> configured service URL
+```
+
+Bu değişiklik bir sonraki adım olan **Day 6C — Spring Cloud LoadBalancer** kapsamında yapılacaktır.
+
+### Day 6B doğrulama sonucu
+
+- Eureka Server başarıyla ayağa kalktı.
+- Eureka Dashboard `http://localhost:8761` üzerinden erişilebilir.
+- Yedi uygulama servisi Eureka Client olarak register oldu.
+- Tüm servisler dashboard üzerinde `UP (1)` durumda görüldü.
+- Service Registry çalışıyor.
+- Service Registration doğrulandı.
+- Heartbeat / Lease Renewal çalışıyor.
+- Local ve Remote Config ile Eureka ayarları merkezi yönetiliyor.
+- Mevcut OpenFeign, Gateway, RabbitMQ ve tracing akışları korunmuştur.
+
+**Day 6B — Spring Cloud Netflix Eureka tamamlandı ve test edildi.**
+
+Sonraki adım: **Day 6C — Spring Cloud LoadBalancer ile Gateway ve OpenFeign çağrılarını service-name tabanlı hale getirmek.**
