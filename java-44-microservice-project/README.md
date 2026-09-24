@@ -522,6 +522,16 @@ GET http://localhost:8080/seller/hello
 - Circuit Breaker ve fallback akışları trace içinde görünür hale geldi.
 - POST isteklerinde fallback handler method uyumsuzluğu giderildi; fallback endpoint'leri HTTP method bağımsız çalışacak şekilde düzenlendi.
 
+### Ekran görüntüleri
+
+Zipkin üzerinde yakın zamanlı trace'ler:
+
+![Day 5 - Zipkin Recent Traces](docs/screenshoot/day5-zipkin-recent-traces.jpg)
+
+Zipkin Dependencies görünümü:
+
+![Day 5 - Zipkin Dependencies](docs/screenshoot/day5-zipkin-dependencies.jpg)
+
 **Day 5B tamamlandı ve hem Local hem Remote Config Server ile test edildi.**
 
 Day 5B yalnızca tracing kapsamındadır; Prometheus, Grafana, Loki, Tempo ve daha geniş observability stack'i sonraki ileri seviye çalışmalar için ayrılmıştır.
@@ -675,6 +685,24 @@ Bu test ile HTTP request'ten başlayan trace context'in RabbitMQ message header'
 - RabbitMQ consumer span'i Zipkin'de görüldü.
 - HTTP -> RabbitMQ producer -> RabbitMQ consumer zinciri aynı trace altında doğrulandı.
 
+### Ekran görüntüleri
+
+RabbitMQ bağlantıları:
+
+![Day 6A - RabbitMQ Connections](docs/screenshoot/day6a-rabbitmq-connections.jpg)
+
+RabbitMQ channel görünümü:
+
+![Day 6A - RabbitMQ Channels](docs/screenshoot/day6a-rabbitmq-channels.jpg)
+
+RabbitMQ queue görünümü:
+
+![Day 6A - RabbitMQ Queue](docs/screenshoot/day6a-rabbitmq-queue.jpg)
+
+Zipkin üzerinde RabbitMQ producer/consumer trace'i:
+
+![Day 6A - Zipkin RabbitMQ Trace](docs/screenshoot/day6a-zipkin-rabbitmq-trace.jpg)
+
 **Day 6A — RabbitMQ + Spring AMQP tamamlandı ve test edildi.**
 
 Day 6'nın sonraki adımlarında **Spring Cloud Netflix Eureka** ve ardından **Spring Cloud LoadBalancer** ile service discovery + load balancing uygulanacaktır.
@@ -792,6 +820,12 @@ Bu değişiklik bir sonraki adım olan **Day 6C — Spring Cloud LoadBalancer** 
 - Heartbeat / Lease Renewal çalışıyor.
 - Local ve Remote Config ile Eureka ayarları merkezi yönetiliyor.
 - Mevcut OpenFeign, Gateway, RabbitMQ ve tracing akışları korunmuştur.
+
+### Ekran görüntüsü
+
+Eureka Dashboard üzerinde kayıtlı servisler:
+
+![Day 6B - Eureka Dashboard](docs/screenshoot/day6b-eureka-dashboard.jpg)
 
 **Day 6B — Spring Cloud Netflix Eureka tamamlandı ve test edildi.**
 
