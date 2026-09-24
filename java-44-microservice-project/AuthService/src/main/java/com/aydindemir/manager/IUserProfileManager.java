@@ -6,10 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(
-        name = "user-profile-manager",
-        url = "${services.user-profile.url}"
-)
+@FeignClient(name = "user-profile-service")
 public interface IUserProfileManager {
 
     @PostMapping("/user/save")

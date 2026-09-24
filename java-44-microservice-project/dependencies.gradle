@@ -25,6 +25,7 @@ ext {
             springCloudGatewayServerWebMvc              : "org.springframework.cloud:spring-cloud-starter-gateway-server-webmvc",
             springCloudEurekaClient                     : "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client",
             springCloudEurekaServer                     : "org.springframework.cloud:spring-cloud-starter-netflix-eureka-server",
+            springCloudLoadBalancer                      : "org.springframework.cloud:spring-cloud-starter-loadbalancer",
             springCloudCircuitBreakerReactorResilience4j: "org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j",
             feignMicrometer                             : "io.github.openfeign:feign-micrometer",
 
